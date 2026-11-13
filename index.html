@@ -1,0 +1,1581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+  ALBANY ROBOTICS WEBSITE
+  =======================
+  This one file is the whole site. It needs these other files next to it:
+    logo.png                    the club logo
+    ptsa-logo.jpg               Albany PTSA's logo, in the Sponsor section
+    bricolage-grotesque.woff2   the font
+
+  HOW TO EDIT
+  Search this file for "EDIT:" to jump to the parts that change most:
+    EDIT: timeline       the 2026-2027 / 2027-2028 / 2028-Future lists (on Home AND Division C)
+    EDIT: competitions   competition dates
+    EDIT: meetings       first meeting date and Thursdays with no meeting
+    EDIT: minutes        where to paste meeting minutes
+    EDIT: leadership     names and roles (Members page)
+    EDIT: sponsors       sponsor logos
+    EDIT: photo          how to add a photo
+    EDIT: contact        email and Instagram at the bottom
+    EDIT: winter         winter decorations: "auto" (November through February), "on", or "off"
+
+  Change the words between the tags, keep the tags themselves.
+  For example in  <li>Build a robot</li>  only change "Build a robot".
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albany Robotics</title>
+<meta name="description" content="Albany Robotics is a student-led robotics organization at Albany High School in Albany, California.">
+<meta property="og:title" content="Albany Robotics">
+<meta property="og:description" content="A student-led robotics organization at Albany High School in Albany, California.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://albany-robotics.github.io/">
+<meta property="og:image" content="https://albany-robotics.github.io/logo.png">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preload" href="bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* Font: Bricolage Grotesque, SIL Open Font License. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("bricolage-grotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+
+/* Colors come from the logo. Change them here and the whole site follows. */
+:root {
+  --sand: #e5dfc9;        /* page background */
+  --paper: #f7f5ed;       /* lighter blocks, same as inside the logo */
+  --stone: #d3ccb1;       /* darker sand, for shapes and rails */
+  --ink: #2b3417;         /* text, a very dark green */
+  --moss: #75863e;        /* logo green */
+  --moss-deep: #566529;   /* darker green, behind light text */
+  --clay: #c97240;        /* logo orange */
+  --clay-deep: #96481f;   /* darker orange, for links and labels */
+  --type: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { font-size: 12pt; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--type);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+img { max-width: 100%; height: auto; display: block; }
+p { margin: 0 0 1em; max-width: 66ch; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--clay-deep); text-underline-offset: 0.18em; text-decoration-thickness: 0.09em; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--clay-deep); outline-offset: 3px; border-radius: 6px; }
+h1:focus { outline: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; }
+
+.wrap { max-width: 70rem; margin: 0 auto; padding-inline: clamp(1.2rem, 5vw, 3.5rem); }
+.hide { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 0.6rem 1rem; z-index: 60; }
+.skip:focus { left: 0.5rem; top: 0.5rem; }
+
+/* ---------- top bar ---------- */
+.top { display: flex; align-items: center; gap: 1.1rem; padding-block: 1.1rem 0.4rem; }
+.brand { display: flex; align-items: center; gap: 0.75rem; color: var(--ink); text-decoration: none; }
+.brand img { width: 3.6rem; height: 3.6rem; }
+.brand span { font-size: 1.55rem; font-weight: 800; font-stretch: 82%; line-height: 1; letter-spacing: -0.01em; }
+
+.menu-btn {
+  display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 1.15rem 0.65rem 0.95rem;
+  background: var(--moss-deep); color: var(--paper); border: 0; cursor: pointer;
+  font-size: 1.05rem; font-weight: 700; line-height: 1;
+  border-radius: 1.5rem 1.9rem 1.4rem 2rem / 1.8rem 1.4rem 1.9rem 1.5rem;
+}
+.menu-btn:hover { background: var(--ink); }
+/* three bars with holes, like VEX metal channel */
+.bars { display: grid; gap: 3px; }
+.bars span {
+  display: block; width: 1.35rem; height: 5px; border-radius: 2px; background-color: var(--paper);
+  background-image: radial-gradient(circle, var(--moss-deep) 1px, transparent 1.3px);
+  background-size: 5px 5px; background-position: 1px center;
+}
+.menu-btn:hover .bars span { background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.3px); }
+
+/* ---------- slide-out menu ---------- */
+.drawer { position: fixed; inset: 0; z-index: 40; visibility: hidden; transition: visibility 0s 0.6s; }
+.drawer.open { visibility: visible; transition: visibility 0s; }
+.drawer .backdrop {
+  position: absolute; inset: 0; width: 100%; border: 0; padding: 0; cursor: pointer;
+  background: rgba(43, 52, 23, 0.4); opacity: 0; transition: opacity 0.4s;
+}
+.drawer.open .backdrop { opacity: 1; }
+.panel {
+  position: absolute; top: 0; left: 0; bottom: 0; width: min(26rem, 92vw); overflow-y: auto;
+  padding: 1.3rem 3.2rem 2rem 1.6rem; background: var(--moss-deep); color: var(--paper);
+  border-radius: 0 2.6rem 2.6rem 0 / 0 3.2rem 3.2rem 0;
+  transform: translateX(-105%); transition: transform 0.55s cubic-bezier(0.3, 1.18, 0.45, 1);
+}
+.drawer.open .panel { transform: none; }
+/* a column of holes down the panel's edge; they light up one by one when it opens */
+.panel .rail { position: absolute; right: 1.1rem; top: 2rem; bottom: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+.panel .rail i { display: block; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--ink); transition: background-color 0.2s; }
+.drawer.open .panel .rail i { background: var(--clay); transition-delay: calc(0.15s + var(--i) * 0.035s); }
+.panel-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.6rem; }
+.panel-top b { font-size: 1.05rem; }
+.panel .close {
+  border: 0; cursor: pointer; padding: 0.5rem 1rem 0.55rem; background: var(--paper); color: var(--ink);
+  font-weight: 700; line-height: 1; border-radius: 1.3rem 1.6rem 1.2rem 1.5rem / 1.5rem 1.2rem 1.6rem 1.3rem;
+}
+.panel :focus-visible { outline-color: var(--paper); }
+.nav-list li { opacity: 0; translate: -2rem 0; transition: opacity 0.25s, translate 0.25s; }
+.drawer.open .nav-list li {
+  opacity: 1; translate: 0 0;
+  transition: opacity 0.35s calc(0.12s + var(--i) * 0.06s), translate 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) calc(0.12s + var(--i) * 0.06s);
+}
+.nav-list li + li { margin-top: 0.35rem; }
+.nav-list a {
+  display: block; padding: 0.75rem 1rem 0.8rem; color: var(--paper); text-decoration: none;
+  border-radius: 1.4rem 1.9rem 1.5rem 1.8rem / 1.8rem 1.4rem 1.9rem 1.5rem;
+}
+.nav-list b { display: block; font-size: 1.7rem; font-weight: 800; font-stretch: 82%; line-height: 1.1; }
+.nav-list small { display: block; margin-top: 0.15rem; font-size: 1rem; opacity: 0.85; }
+.nav-list a:hover { background: rgba(247, 245, 237, 0.12); }
+.nav-list a[aria-current="page"] { background: var(--paper); color: var(--ink); }
+
+/* ---------- mechanical page change: two plates close and open ---------- */
+.shutter { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+.shutter i {
+  position: absolute; left: 0; right: 0; height: 50.5%;
+  background-repeat: repeat-x; background-size: 1.9rem 1.9rem;
+  transition: transform 0.32s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.shutter .upper {
+  top: 0; transform: translateY(-101%); background-color: var(--moss-deep);
+  background-image: radial-gradient(circle, var(--sand) 0.28rem, transparent 0.33rem);
+  background-position: 0.95rem calc(100% - 0.5rem);
+}
+.shutter .lower {
+  bottom: 0; transform: translateY(101%); background-color: var(--moss);
+  background-image: radial-gradient(circle, var(--sand) 0.28rem, transparent 0.33rem);
+  background-position: 0.95rem 0.5rem;
+}
+.shutter.shut i { transform: none; }
+
+/* ---------- headings ---------- */
+h1, h2, h3 { margin: 0; font-weight: 800; font-stretch: 80%; letter-spacing: -0.012em; text-wrap: balance; }
+h1 { font-size: clamp(2.7rem, 7.2vw, 5.4rem); line-height: 0.95; }
+.sub h1 { font-size: clamp(3rem, 7.6vw, 6rem); max-width: 14ch; }
+h2 { font-size: 2.35rem; line-height: 1.03; }
+h3 { font-size: 1.6rem; line-height: 1.1; font-stretch: 86%; }
+
+/* ---------- opening of each page ---------- */
+.open { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 2rem 3rem; align-items: center; padding-block: 3rem 3.5rem; }
+.open h1 { max-width: 11ch; }
+.open .lede { margin-top: 1.3rem; max-width: 46ch; font-size: 1.32rem; line-height: 1.5; font-weight: 500; }
+.sub .open { grid-template-columns: minmax(0, 1fr); padding-block: 2.2rem 1.6rem; }
+.sub .open.has-robot { grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); align-items: end; }
+
+.status {
+  display: inline-flex; align-items: center; gap: 0.55rem; margin-bottom: 1.3rem; padding: 0.35rem 0.95rem 0.4rem 0.7rem;
+  background: var(--paper); font-weight: 600;
+  border-radius: 1.3rem 1.7rem 1.2rem 1.6rem / 1.6rem 1.2rem 1.7rem 1.3rem;
+}
+.status i, .parts i { display: block; flex: none; width: 0.95rem; height: 0.85rem; background: var(--moss); border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%; }
+.later i { background: var(--stone); box-shadow: inset 0 0 0 2px var(--moss-deep); }
+.starting i { background: var(--clay); border-radius: 44% 56% 60% 40% / 55% 42% 58% 45%; }
+
+/* cut-paper shapes behind the logo */
+.cutout { position: relative; aspect-ratio: 1; max-width: 23rem; width: 100%; justify-self: end; }
+.cutout span { position: absolute; display: block; }
+.cutout .a { inset: 2% 0 6% 8%; background: var(--stone); border-radius: 56% 44% 49% 51% / 47% 58% 42% 53%; rotate: -8deg; }
+.cutout .b { width: 34%; height: 30%; left: -4%; bottom: 2%; background: var(--clay); border-radius: 44% 56% 60% 40% / 55% 42% 58% 45%; rotate: 14deg; }
+.cutout .c { width: 17%; height: 15%; right: 3%; top: 1%; background: var(--moss); border-radius: 60% 40% 45% 55% / 48% 60% 40% 52%; }
+.cutout img { position: absolute; width: 76%; left: 15%; top: 10%; }
+
+/* Home opening: buttons and quick facts */
+.hero .open { padding-block: 1.2rem 1.6rem; row-gap: 1.6rem; }
+.hero h1 { font-size: clamp(2.6rem, min(7vw, 10vh), 5.6rem); }
+.hero .cutout { max-width: min(23rem, 46vh); }
+.cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1.5rem 0 0; }
+.btn {
+  display: inline-block; padding: 0.7rem 1.35rem 0.75rem; background: var(--moss-deep); color: var(--paper);
+  font-size: 1.1rem; font-weight: 700; line-height: 1.1; text-decoration: none;
+  border-radius: 1.5rem 1.9rem 1.4rem 2rem / 1.8rem 1.4rem 1.9rem 1.5rem;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.alt { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2.5px var(--moss-deep); border-radius: 1.9rem 1.5rem 2rem 1.4rem / 1.4rem 1.8rem 1.5rem 1.9rem; }
+.btn.alt:hover { background: var(--stone); color: var(--ink); }
+.facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; }
+.facts li { padding: 0.9rem 1.2rem 1rem; background: var(--paper); border-radius: 1.6rem 2.2rem 1.8rem 2rem / 2rem 1.6rem 2.2rem 1.8rem; }
+.facts li:nth-child(even) { border-radius: 2.2rem 1.6rem 2rem 1.8rem / 1.6rem 2rem 1.8rem 2.2rem; }
+.facts small { display: block; font-size: 0.95rem; font-weight: 600; color: var(--clay-deep); }
+.facts b { display: block; margin-top: 0.1rem; font-size: 1.75rem; font-weight: 800; font-stretch: 80%; line-height: 1.08; }
+.facts span { display: block; margin-top: 0.2rem; font-size: 0.95rem; }
+
+/* ---------- sections: heading on the left, content on the right ---------- */
+.band { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 1rem 2.5rem; padding-block: 2.1rem; align-items: start; font-size: 1.18rem; line-height: 1.55; }
+.band > h2 { max-width: 9ch; }
+
+/* the three parts of the club */
+.parts li + li { margin-top: 0.6rem; }
+.parts a {
+  display: grid; grid-template-columns: 1rem 11rem minmax(0, 1fr) auto; gap: 0.3rem 1.1rem; align-items: baseline;
+  padding: 1.05rem 1.4rem 1.1rem 1.2rem; background: var(--paper); color: var(--ink); text-decoration: none;
+  border-radius: 1.6rem 2.4rem 1.8rem 2.2rem / 2.2rem 1.7rem 2.4rem 1.6rem;
+}
+.parts li:nth-child(2) a { border-radius: 2.3rem 1.6rem 2.2rem 1.8rem / 1.7rem 2.3rem 1.6rem 2.2rem; }
+.parts li:nth-child(3) a { border-radius: 1.8rem 2.2rem 1.6rem 2.4rem / 2.4rem 1.6rem 2.2rem 1.8rem; }
+.parts a:hover { background: #fffdf6; }
+.parts a:hover h3 { text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.14em; }
+.parts i { align-self: start; margin-top: 0.5rem; }
+.parts em { font-style: normal; font-weight: 600; color: var(--clay-deep); white-space: nowrap; }
+
+.dots li { position: relative; padding-left: 1.5rem; max-width: 56ch; }
+.dots li + li { margin-top: 0.45rem; }
+.dots li::before {
+  content: ""; position: absolute; left: 0; top: 0.5em; width: 0.7rem; height: 0.62rem;
+  background: var(--moss); border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%;
+}
+.dots li:nth-child(even)::before { background: var(--clay); border-radius: 44% 56% 60% 40% / 55% 42% 58% 45%; }
+
+/* ---------- timeline: a perforated rail that fills as you scroll ---------- */
+.timeline { position: relative; padding-left: 3.4rem; --t: 1; }
+.timeline::before, .timeline::after {
+  content: ""; position: absolute; left: 0.55rem; top: 0.5rem; width: 1.1rem; border-radius: 0.55rem;
+  background-image: radial-gradient(circle, var(--sand) 0.17rem, transparent 0.21rem);
+  background-size: 1.1rem 1.1rem; background-position: center top;
+}
+.timeline::before { bottom: 0.5rem; background-color: var(--stone); }
+.timeline::after { height: calc((100% - 1rem) * var(--t)); background-color: var(--clay); }
+.timeline > li { position: relative; padding-bottom: 2.4rem; }
+.timeline > li:last-child { padding-bottom: 0.2rem; }
+.timeline .node {
+  position: absolute; z-index: 1; left: -3.25rem; top: 0.3rem; width: 1.8rem; height: 1.65rem;
+  background: var(--paper); box-shadow: inset 0 0 0 0.3rem var(--moss-deep);
+  border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%;
+  transition: background-color 0.25s, scale 0.35s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.timeline > li.on .node { background: var(--clay); scale: 1.12; }
+.timeline h3 { font-size: clamp(2.4rem, 4.8vw, 3.3rem); font-stretch: 78%; line-height: 1; margin-bottom: 0.8rem; }
+.timeline > li > p { max-width: 50ch; }
+
+/* ---------- Division C robot ---------- */
+.robot-stage { position: relative; width: min(100%, 27rem); justify-self: end; padding-bottom: 0.4rem; }
+.robot-stage::after {
+  content: ""; position: absolute; left: -8%; right: -4%; bottom: 0; height: 0.75rem; border-radius: 0.4rem;
+  background-color: var(--stone);
+  background-image: radial-gradient(circle, var(--sand) 0.13rem, transparent 0.17rem);
+  background-size: 0.95rem 0.75rem;
+}
+.robot-stage .bot { position: relative; z-index: 1; display: block; width: 100%; height: auto; }
+
+/* the robot drawing (used on Division C and on the scroll rail) */
+.bot .k-moss { fill: var(--moss); }
+.bot .k-clay { fill: var(--clay); }
+.bot .k-paper { fill: var(--paper); }
+.bot .k-ink { fill: var(--ink); }
+.bot .tread { fill: none; stroke: var(--moss); stroke-width: 5; stroke-dasharray: 3.2 2.9; }
+.bot .screen { fill: var(--paper); stroke: var(--moss-deep); stroke-width: 3; }
+.bot .smile { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
+.bot .wheel, .bot .eyes, .bot .face, .bot .claw-top, .bot .claw-bottom { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- winter surprises ---------- */
+.bot .k-red { fill: #b8402f; }
+.bot .k-snow { fill: #fffdf7; }
+.bot .k-gold { fill: #e8c46b; }
+.bot .hat, .bot .gift { display: none; }
+.bot.festive .hat, .bot.festive .gift { display: inline; }
+.robot-stage .bot { cursor: pointer; }
+.motion .scroll-bot .bot { pointer-events: auto; cursor: pointer; }
+.bubble {
+  position: absolute; z-index: 3; padding: 0.45rem 0.85rem 0.5rem; background: var(--ink); color: var(--paper);
+  font-size: 1rem; font-weight: 700; line-height: 1.2; white-space: nowrap; pointer-events: none;
+  border-radius: 1rem 1.2rem 1rem 0.3rem; opacity: 0; translate: 0 6px;
+  transition: opacity 0.2s, translate 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.bubble.show { opacity: 1; translate: 0 0; }
+.robot-stage .bubble { top: -0.6rem; left: 34%; }
+.scroll-bot .bubble { right: 4.2rem; top: calc(var(--y, 0px) + 0.4rem); border-radius: 1rem 0.3rem 1rem 1.2rem; }
+.snow { position: fixed; inset: 0; z-index: 45; overflow: hidden; pointer-events: none; transition: opacity 1.4s; }
+.snow.melt { opacity: 0; }
+.snow i, .flurry i {
+  position: absolute; top: -20px; display: block; background: #fffdf7; border-radius: 50%;
+  animation-name: fall, sway; animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite; animation-direction: normal, alternate;
+}
+@keyframes fall { to { translate: 0 calc(100vh + 40px); } }
+@keyframes sway { from { margin-left: -14px; } to { margin-left: 14px; } }
+.end.snowy { position: relative; }
+.end.snowy::before, .winter .end::before {
+  content: ""; position: absolute; left: 3rem; right: 4.5rem; top: -0.6rem; height: 1.25rem; border-radius: 0 0 0.6rem 0.6rem;
+  background:
+    radial-gradient(circle at 50% 100%, #fffdf7 0.78rem, transparent 0.82rem) 0 0 / 1.35rem 1.1rem repeat-x,
+    radial-gradient(circle at 50% 100%, #fffdf7 0.6rem, transparent 0.64rem) 0.6rem 0.25rem / 1.1rem 0.85rem repeat-x,
+    linear-gradient(#fffdf7, #fffdf7) 0 100% / 100% 0.45rem no-repeat;
+}
+.motion .cutout.jingle img { animation: jingle 0.8s ease-in-out; }
+@keyframes jingle { 20% { transform: rotate(-8deg); } 40% { transform: rotate(7deg); } 60% { transform: rotate(-5deg); } 80% { transform: rotate(3deg); } }
+/* ---------- winter season (see "EDIT: winter") ---------- */
+/* light snowfall behind the page */
+.flurry { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.winter .top, .winter main, .winter .end { position: relative; z-index: 1; }
+/* the holes down the menu become holiday lights */
+.winter .drawer.open .panel .rail i:nth-child(3n+1) { background: #d4533f; }
+.winter .drawer.open .panel .rail i:nth-child(3n+2) { background: #ecc66d; }
+.winter .drawer.open .panel .rail i:nth-child(3n) { background: #a6c86a; }
+.motion.winter .drawer.open .panel .rail i { animation: twinkle 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.11s); }
+@keyframes twinkle { 50% { opacity: 0.35; } }
+/* snow resting on buttons and cards */
+.winter .menu-btn, .winter .btn, .winter .facts li, .winter .comp-card, .winter .event, .winter .parts a { position: relative; }
+.winter .menu-btn::before, .winter .btn::before, .winter .facts li::before, .winter .comp-card::before, .winter .event::before, .winter .parts a::before {
+  content: ""; position: absolute; left: 14%; right: 12%; top: -0.34rem; height: 0.72rem; pointer-events: none;
+  background: radial-gradient(circle at 50% 100%, #fffdf7 0.38rem, transparent 0.41rem) 0 0 / 0.78rem 0.72rem repeat-x;
+  filter: drop-shadow(0 1px 0 rgba(43, 52, 23, 0.1));
+}
+.winter .facts li:nth-child(even)::before, .winter .parts li:nth-child(even) a::before { left: 30%; right: 8%; }
+/* timeline years become ornaments */
+.winter .timeline .node::after {
+  content: ""; position: absolute; left: 50%; top: -0.38rem; width: 0.5rem; height: 0.42rem; translate: -50% 0;
+  border-radius: 0.12rem; background: var(--moss-deep);
+}
+.winter .timeline > li.on .node { background: #b8402f; }
+.winter .timeline > li:nth-child(2).on .node { background: #e8c46b; }
+.winter .timeline > li:nth-child(3).on .node { background: #8fb35a; }
+/* snowflakes around the Home logo */
+.cutout .flake { display: none; }
+.winter .cutout .flake { display: block; position: absolute; aspect-ratio: 1; height: auto; overflow: visible; fill: none; stroke: #fffdf7; stroke-width: 1.9; stroke-linecap: round; filter: drop-shadow(0 1px 0 rgba(43, 52, 23, 0.15)); }
+.cutout .f1 { width: 13%; left: 4%; top: 4%; }
+.cutout .f2 { width: 9%; right: -2%; bottom: 18%; }
+.cutout .f3 { width: 7%; left: -5%; top: 46%; }
+.motion.winter .cutout .flake { animation: spin 22s linear infinite; }
+.motion.winter .cutout .f2 { animation-duration: 30s; animation-direction: reverse; }
+@keyframes spin { to { rotate: 360deg; } }
+.end .greeting { margin-top: 0.4rem; font-size: 1rem; font-weight: 700; }
+
+.motion .robot-stage.go .bot { animation: drive-in 2s cubic-bezier(0.16, 0.8, 0.24, 1) both; }
+.motion .robot-stage.go .wheel { animation: roll 2s cubic-bezier(0.16, 0.8, 0.24, 1) both; }
+.motion .robot-stage.go .claw-top { animation: grip-top 0.45s ease-in-out 2s 4 alternate; }
+.motion .robot-stage.go .claw-bottom { animation: grip-bottom 0.45s ease-in-out 2s 4 alternate; }
+.motion .robot-stage.go .eyes { animation: blink 0.14s linear 3.2s 2 alternate; }
+@keyframes drive-in { from { translate: -75vw 0; } to { translate: 0 0; } }
+@keyframes roll { from { transform: rotate(-1100deg); } to { transform: rotate(0deg); } }
+@keyframes grip-top { to { transform: translateY(4.5px); } }
+@keyframes grip-bottom { to { transform: translateY(-4.5px); } }
+@keyframes blink { to { transform: scaleY(0.1); } }
+
+/* ---------- competitions ---------- */
+.comp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-block: 0.4rem 1.2rem; }
+.comp-card { padding: 1.6rem 1.8rem 1.8rem; background: var(--paper); font-size: 1.15rem; border-radius: 2.2rem 2.8rem 2.4rem 2.6rem / 2.6rem 2.2rem 2.8rem 2.4rem; }
+.comp-card.later { border-radius: 2.8rem 2.2rem 2.6rem 2.4rem / 2.2rem 2.8rem 2.4rem 2.6rem; }
+.comp-card .status { margin-bottom: 1rem; background: var(--sand); }
+.comp-card h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); }
+.comp-card .when { margin: 0.5rem 0 0.6rem; font-size: 2.1rem; font-weight: 800; font-stretch: 78%; line-height: 1.05; color: var(--clay-deep); }
+.facts-list { margin: 1.3rem 0 0; display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 0.9rem 1.5rem; align-items: baseline; }
+.facts-list dt { font-size: 1.3rem; font-weight: 800; font-stretch: 84%; line-height: 1.3; color: var(--clay-deep); }
+.facts-list dd { margin: 0; max-width: 60ch; }
+.costs { width: 100%; max-width: 42rem; border-collapse: collapse; }
+.costs th, .costs td { padding: 0.75rem 0; text-align: left; vertical-align: baseline; border-bottom: 2px dotted var(--stone); }
+.costs th { font-weight: 500; }
+.costs td { padding-left: 1rem; text-align: right; font-weight: 700; white-space: nowrap; }
+
+/* ---------- schedule ---------- */
+.event {
+  max-width: 40rem; padding: 1.3rem 1.6rem 1.4rem; background: var(--paper);
+  border-radius: 2rem 2.6rem 2.2rem 2.4rem / 2.4rem 2rem 2.6rem 2.2rem;
+}
+.event .when { margin: 0 0 0.2rem; font-size: 2.7rem; font-weight: 800; font-stretch: 78%; line-height: 1.05; color: var(--clay-deep); }
+.event h3 { margin-bottom: 0.4rem; }
+.meet-list { display: grid; gap: 0.5rem; max-width: 40rem; }
+.meet-list button {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%;
+  padding: 0.85rem 1.25rem 0.9rem; border: 0; cursor: pointer; text-align: left;
+  background: var(--paper); color: var(--ink);
+  border-radius: 1.4rem 1.9rem 1.5rem 1.8rem / 1.8rem 1.4rem 1.9rem 1.5rem;
+}
+.meet-list button:nth-child(even) { border-radius: 1.9rem 1.4rem 1.8rem 1.5rem / 1.4rem 1.8rem 1.5rem 1.9rem; }
+.meet-list button:hover { background: #fffdf6; }
+.meet-list button span:first-child { font-weight: 600; }
+.meet-list button span:last-child { color: var(--clay-deep); font-weight: 600; white-space: nowrap; }
+.note { margin-top: 1rem; font-size: 0.92rem; }
+
+dialog.minutes {
+  width: min(40rem, calc(100vw - 2rem)); max-height: min(80vh, 46rem); padding: 1.8rem 2rem 2rem; border: 0;
+  background: var(--paper); color: var(--ink);
+  border-radius: 2.2rem 2.8rem 2.4rem 2.6rem / 2.6rem 2.2rem 2.8rem 2.4rem;
+  box-shadow: 0 1.5rem 3rem rgba(43, 52, 23, 0.28);
+}
+dialog.minutes::backdrop { background: rgba(43, 52, 23, 0.45); }
+.motion dialog.minutes[open] { animation: panel-in 0.45s cubic-bezier(0.3, 1.3, 0.5, 1); }
+@keyframes panel-in { from { opacity: 0; transform: translateY(26px) scale(0.97); } }
+.minutes-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; margin-bottom: 1.2rem; }
+.minutes-head small { display: block; margin-bottom: 0.2rem; font-weight: 600; color: var(--clay-deep); }
+.minutes .close {
+  flex: none; border: 0; cursor: pointer; padding: 0.5rem 1rem 0.55rem; background: var(--moss-deep); color: var(--paper);
+  font-weight: 700; line-height: 1; border-radius: 1.3rem 1.6rem 1.2rem 1.5rem / 1.5rem 1.2rem 1.6rem 1.3rem;
+}
+.minutes-body ul { list-style: disc; padding-left: 1.3rem; }
+
+/* ---------- members ---------- */
+.roles { margin: 0; display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 1.1rem 1.5rem; align-items: baseline; }
+.roles dt { font-size: 2rem; font-weight: 800; font-stretch: 84%; line-height: 1.15; color: var(--clay-deep); }
+.roles dd { margin: 0; font-size: 1.3rem; font-weight: 500; line-height: 1.3; }
+.roles dd span { display: inline-block; margin-right: 1.1rem; }
+
+/* ---------- sponsors ---------- */
+.sponsor figure { margin: 0; }
+.sponsor img {
+  width: 13rem; padding: 0.9rem 1rem; background: #fff;
+  border-radius: 1.6rem 2.2rem 1.8rem 2rem / 2rem 1.6rem 2.2rem 1.8rem;
+}
+
+/* photos (see "EDIT: photo") */
+.photo { margin: 0 0 1.2rem; max-width: 40rem; }
+.photo img { width: 100%; border-radius: 2rem 2.8rem 2.2rem 2.6rem / 2.6rem 2rem 2.8rem 2.2rem; }
+.photo figcaption { margin-top: 0.5rem; font-size: 0.92rem; }
+
+/* ---------- bottom ---------- */
+.end {
+  margin-top: 3.5rem; background: var(--moss-deep); color: var(--paper);
+  border-radius: 3rem 5rem 0 0 / 2.6rem 3.6rem 0 0;
+}
+.end .wrap { padding-block: 2.6rem 2.2rem; font-size: 1.12rem; }
+.end h2 { margin-bottom: 0.7rem; }
+.end a { color: var(--paper); }
+.end a:hover { color: #fff; }
+.end .mail { display: inline-block; font-size: clamp(1.15rem, 3.7vw, 2.3rem); font-weight: 700; font-stretch: 84%; line-height: 1.2; overflow-wrap: anywhere; }
+.end p { max-width: 54ch; }
+.end p.wide { max-width: none; }
+.end .fine { margin-top: 1.8rem; font-size: 1rem; opacity: 0.92; }
+.end :focus-visible { outline-color: var(--paper); }
+
+/* only one page shows at a time (when JavaScript is on) */
+.js .page[hidden] { display: none; }
+
+/* ---------- Home scroll scenes ---------- */
+.stage { position: relative; overflow-x: clip; }
+.statement { margin: 0 auto; max-width: 20ch; font-size: clamp(2rem, 5vw, 4.3rem); font-weight: 750; font-stretch: 82%; line-height: 1.08; letter-spacing: -0.012em; }
+.words .wrap { padding-block: 3rem; }
+.stack .band > div > h2 { font-size: clamp(2.2rem, 4.2vw, 3.3rem); max-width: 8ch; }
+.aside { margin-top: 1rem; max-width: 26ch; font-size: 1.05rem; }
+.cue { display: none; }
+
+.motion .stage.hero { height: 185vh; }
+.motion .stage.words { height: 230vh; }
+.motion .stage.stack { height: 270vh; }
+.motion .pin { position: sticky; top: 0; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
+.motion .hero .pin { align-items: flex-start; }
+.motion .pin > .wrap { width: 100%; }
+.motion .stage.nopin { height: auto; }
+.motion .stage.nopin .pin { position: static; min-height: 0; }
+
+.motion .hero .open > div:first-child { opacity: calc(1 - var(--p, 0) * 2.4); translate: 0 calc(var(--p, 0) * -70px); }
+.motion .hero .open > .facts { opacity: calc(1 - var(--p, 0) * 2.8); translate: 0 calc(var(--p, 0) * -40px); }
+.motion .hero .cutout { transform: translate(calc(var(--dx, 0px) * var(--e, 0)), calc(var(--dy, 0px) * var(--e, 0))) scale(calc(1 + var(--e, 0) * 0.32)); }
+.motion .hero .cutout .a { rotate: calc(-8deg - var(--p, 0) * 34deg); scale: calc(1 + var(--p, 0) * 0.1); }
+.motion .hero .cutout .b { rotate: calc(14deg + var(--p, 0) * 50deg); translate: calc(var(--p, 0) * -70px) calc(var(--p, 0) * 40px); }
+.motion .hero .cutout .c { translate: calc(var(--p, 0) * 60px) calc(var(--p, 0) * -50px); rotate: calc(var(--p, 0) * 90deg); }
+.motion .hero .cutout img { rotate: calc(var(--p, 0) * -9deg); }
+.motion .hero:not(.nopin) .cue {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem; position: absolute; left: 0; right: 0; bottom: 1.6rem;
+  margin: 0; font-size: 0.92rem; font-weight: 600; opacity: calc(1 - var(--p, 0) * 8); pointer-events: none;
+}
+.cue i { display: block; width: 0.9rem; height: 1.1rem; background: var(--clay); border-radius: 50% 50% 46% 54% / 40% 40% 60% 60%; animation: bob 2.2s ease-in-out infinite; }
+@keyframes bob { 50% { translate: 0 6px; } }
+.motion .parts li:focus-within { opacity: 1 !important; translate: none !important; rotate: none !important; }
+
+/* things that fade up as they come into view */
+.motion [data-reveal] {
+  opacity: 0; translate: 0 34px;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0s);
+}
+.motion [data-reveal].in, .motion [data-reveal]:focus-within { opacity: 1; translate: 0 0; }
+.motion .timeline { --t: 0; }
+
+/* ---------- the little robot that rides a rail as you scroll ---------- */
+.scroll-bot { display: none; }
+.motion .scroll-bot { display: block; position: fixed; z-index: 15; top: 6rem; bottom: 1.4rem; right: 0.7rem; width: 3.5rem; pointer-events: none; }
+.scroll-bot .rail {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0.5rem; border-radius: 0.25rem;
+  background-color: var(--stone);
+  background-image: radial-gradient(circle, var(--sand) 0.09rem, transparent 0.12rem);
+  background-size: 0.5rem 0.75rem; background-position: center top;
+}
+/* on wide screens the robot is turned to drive down the rail, face kept upright */
+.scroll-bot .bot { position: absolute; left: 0.5rem; top: 0; width: 3.6rem; height: 3rem; transform-origin: 0 0; transform: translate(3rem, var(--y, 0px)) rotate(90deg); }
+.scroll-bot .face { transform: rotate(-90deg); }
+
+/* ---------- phones and small tablets ---------- */
+@media (max-width: 75rem) {
+  /* the rail moves to the bottom edge and the robot drives left to right */
+  .motion .scroll-bot { top: auto; left: 0.6rem; right: 0.6rem; bottom: 0.35rem; width: auto; height: 2.7rem; }
+  .scroll-bot .rail { top: auto; bottom: 0; right: 0; width: auto; height: 0.4rem; background-size: 0.75rem 0.4rem; background-position: left center; }
+  .scroll-bot .bot { left: 0; top: auto; bottom: 0.4rem; width: 2.76rem; height: 2.3rem; transform: translateX(var(--x, 0px)); }
+  .scroll-bot .face { transform: none; }
+  .scroll-bot .bubble { right: auto; top: auto; bottom: 3rem; left: calc(var(--x, 0px) + 0.4rem); border-radius: 1rem 1.2rem 1rem 0.3rem; }
+  .motion .end .wrap { padding-bottom: 4.5rem; }
+}
+@media (max-width: 52rem) {
+  .open, .sub .open.has-robot { grid-template-columns: minmax(0, 1fr); padding-block: 2rem 2.5rem; }
+  .cutout { justify-self: start; max-width: 16rem; order: -1; }
+  .robot-stage { justify-self: start; width: min(100%, 17rem); margin-top: 0.5rem; }
+  .band { grid-template-columns: minmax(0, 1fr); padding-block: 1.7rem; font-size: 1.08rem; }
+  .open .lede { font-size: 1.15rem; }
+  .parts a { grid-template-columns: 1rem minmax(0, 1fr); }
+  .band > h2 { max-width: none; }
+  .parts a { grid-template-columns: 1rem minmax(0, 1fr); }
+  .parts a > :nth-child(n+3) { grid-column: 2; }
+  .roles { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts b { font-size: 1.4rem; }
+  .comp-grid { grid-template-columns: minmax(0, 1fr); }
+  .facts-list { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .facts-list dd { margin-bottom: 0.9rem; }
+  .roles dd { margin-bottom: 1rem; }
+  .end { border-radius: 2rem 3rem 0 0 / 1.8rem 2.4rem 0 0; }
+  .brand span { font-size: 1.35rem; }
+  .brand img { width: 3rem; height: 3rem; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap top">
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+    <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    Menu
+  </button>
+  <a class="brand" href="#home">
+    <img src="logo.png" alt="" width="560" height="560">
+    <span>Albany Robotics</span>
+  </a>
+</header>
+
+<!-- ======================================================= MENU -->
+<nav class="drawer" id="site-nav" aria-label="Site">
+  <button class="backdrop" type="button" tabindex="-1" aria-label="Close menu"></button>
+  <div class="panel">
+    <span class="rail" aria-hidden="true">
+      <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i>
+      <i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i>
+      <i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i>
+    </span>
+    <div class="panel-top">
+      <b>Albany Robotics</b>
+      <button class="close" type="button">Close</button>
+    </div>
+    <ul class="nav-list">
+      <li style="--i:0"><a href="#home" data-page="home"><b>Home</b><small>Overview and timeline</small></a></li>
+      <li style="--i:1"><a href="#div-c" data-page="div-c"><b>Division C</b><small>High school competition team</small></a></li>
+      <li style="--i:2"><a href="#div-b" data-page="div-b"><b>Division B</b><small>Middle school program</small></a></li>
+      <li style="--i:3"><a href="#competitions" data-page="competitions"><b>Competitions</b><small>PiE and VEX</small></a></li>
+      <li style="--i:4"><a href="#open-bench" data-page="open-bench"><b>Open Bench</b><small>STEM outreach</small></a></li>
+      <li style="--i:5"><a href="#schedule" data-page="schedule"><b>Meeting and Competition Dates</b><small>Schedule and meeting minutes</small></a></li>
+      <li style="--i:6"><a href="#members" data-page="members"><b>Members</b><small>Leadership and membership</small></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ======================================================= HOME -->
+<section class="page" id="p-home">
+
+  <!-- Scroll part 1: the logo moves to the middle as the headline fades -->
+  <div class="stage hero" data-scrub="hero">
+    <div class="pin">
+      <div class="wrap open">
+        <div>
+          <h1 tabindex="-1">Robotics at Albany High School.</h1>
+          <p class="lede">We are a student-led engineering organization at Albany High School in Albany, California. This season we will compete in the Pioneers in Engineering Robotics Competition, and next year we plan to enter VEX competition and open a middle school program.</p>
+          <p class="cta"><a class="btn" href="#competitions">View competitions</a><a class="btn alt" href="#members">How to join</a></p>
+        </div>
+        <div class="cutout" aria-hidden="true">
+          <span class="a"></span><span class="b"></span><span class="c"></span>
+          <svg class="flake f1" viewBox="-12 -12 24 24"><use href="#flake"/></svg>
+          <svg class="flake f2" viewBox="-12 -12 24 24"><use href="#flake"/></svg>
+          <svg class="flake f3" viewBox="-12 -12 24 24"><use href="#flake"/></svg>
+          <img src="logo.png" alt="" width="560" height="560">
+        </div>
+        <ul class="facts">
+          <li><small>Founded</small><b>2026</b><span>Albany High School</span></li>
+          <li><small>Meetings</small><b>Every Thursday</b><span id="next-meeting">General meetings</span></li>
+          <li><small>Next competition</small><b>PiE, early 2027</b><span>Division C</span></li>
+          <li><small>Programs</small><b>3</b><span>Division C, Division B, Open Bench</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll part 2: this sentence lights up one word at a time -->
+  <div class="stage words" data-scrub="words">
+    <div class="pin">
+      <div class="wrap">
+        <h2 class="hide">About the club</h2>
+        <p class="statement">We design, build, and program competition robots, and we share that knowledge with younger students through mentorship and outreach.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll part 3: the three programs slide in one by one -->
+  <div class="stage stack" data-scrub="stack">
+    <div class="pin">
+      <div class="wrap band">
+        <div>
+          <h2>Programs</h2>
+          <p class="aside">We are organized into two divisions and an outreach program.</p>
+        </div>
+        <ul class="parts">
+          <li><a href="#div-c">
+            <i></i><h3>Division C</h3>
+            <span>The high school competition team. PiE in 2026–2027, VEX beginning in 2027–2028.</span>
+            <em>Active</em>
+          </a></li>
+          <li class="later"><a href="#div-b">
+            <i></i><h3>Division B</h3>
+            <span>The middle school program, focused on hands-on instruction, with optional competition.</span>
+            <em>Planned for 2027–2028</em>
+          </a></li>
+          <li class="starting"><a href="#open-bench">
+            <i></i><h3>Open Bench</h3>
+            <span>Guidance in robotics and STEM for any student, regardless of membership.</span>
+            <em>In development</em>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- EDIT: photo
+         To add a photo here: upload the picture to GitHub next to this file, change team.jpg
+         below to the picture's file name, fill in the description and caption, then delete
+         the two lines that say DELETE THIS LINE. -->
+    <!-- DELETE THIS LINE
+    <div class="band">
+      <span></span>
+      <figure class="photo">
+        <img src="team.jpg" alt="Describe what's in the photo">
+        <figcaption>Caption: who, where, when.</figcaption>
+      </figure>
+    </div>
+    DELETE THIS LINE -->
+
+    <div class="band">
+      <h2>Timeline</h2>
+      <!-- EDIT: timeline (this list also appears on the Division C page; change both) -->
+      <ol class="timeline">
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2026–2027</h3>
+          <ul class="dots">
+            <li>Establish the high school team, Division C</li>
+            <li>Design and build a robot for the Pioneers in Engineering (PiE) Robotics Competition</li>
+            <li>Assess student interest at the high school and the middle school</li>
+            <li>Secure funding and apply for grants for VEX equipment and registration</li>
+            <li>Develop the curriculum and advising structure for Division B</li>
+          </ul>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2027–2028</h3>
+          <ul class="dots">
+            <li>Compete at regional VEX V5 Robotics Competition tournaments</li>
+            <li>Launch Division B at the middle school, with high school members serving as mentors</li>
+            <li>Establish long-term funding through school allocations, family contributions, and local sponsors</li>
+          </ul>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2028–Future</h3>
+          <p>Plans for this period are in development.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="band">
+      <h2>Sponsor</h2>
+      <div class="sponsor">
+        <!-- EDIT: sponsors
+             To add another sponsor, copy everything from <figure> to </figure>,
+             upload their logo next to this file, and change the file name and the alt text. -->
+        <figure>
+          <img src="ptsa-logo.jpg" alt="Albany PTSA" width="374" height="312">
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= DIVISION C -->
+<section class="page sub" id="p-div-c">
+  <div class="wrap">
+
+    <div class="open has-robot">
+      <div class="text">
+        <p class="status"><i></i>Active</p>
+        <h1 tabindex="-1">Division C</h1>
+        <p class="lede">Division C is our high school competition team. Its members design, build, and program robots for regional competition.</p>
+      </div>
+      <div class="robot-stage" data-robot></div>
+    </div>
+
+    <div class="band">
+      <h2>Timeline</h2>
+      <!-- EDIT: timeline (same list as on the Home page; change both) -->
+      <ol class="timeline">
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2026–2027</h3>
+          <ul class="dots">
+            <li>Establish the high school team, Division C</li>
+            <li>Design and build a robot for the Pioneers in Engineering (PiE) Robotics Competition</li>
+            <li>Assess student interest at the high school and the middle school</li>
+            <li>Secure funding and apply for grants for VEX equipment and registration</li>
+            <li>Develop the curriculum and advising structure for Division B</li>
+          </ul>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2027–2028</h3>
+          <ul class="dots">
+            <li>Compete at regional VEX V5 Robotics Competition tournaments</li>
+            <li>Launch Division B at the middle school, with high school members serving as mentors</li>
+            <li>Establish long-term funding through school allocations, family contributions, and local sponsors</li>
+          </ul>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"></span>
+          <h3>2028–Future</h3>
+          <p>Plans for this period are in development.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="band">
+      <h2>Competitions</h2>
+      <div>
+        <!-- EDIT: photo
+             A robot or build photo can go here. Same steps as the photo spot on the Home page. -->
+        <!-- DELETE THIS LINE
+        <figure class="photo">
+          <img src="robot.jpg" alt="Describe what's in the photo">
+          <figcaption>Caption: who, where, when.</figcaption>
+        </figure>
+        DELETE THIS LINE -->
+        <p>During the 2026–2027 season, Division C will compete in the Pioneers in Engineering (PiE) Robotics Competition. PiE is organized by students at the University of California, Berkeley, and pairs each participating high school team with university mentors.</p>
+        <p>Beginning in 2027–2028, we intend to compete in the VEX V5 Robotics Competition at the regional level. Our fundraising and grant applications for this transition are under way.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Mentorship</h2>
+      <div>
+        <p>Members of Division C also serve as instructors and technical mentors. They will lead workshops in computer-aided design (CAD), electronics, and programming, and will mentor students in Division B once that program begins.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= DIVISION B -->
+<section class="page sub later" id="p-div-b">
+  <div class="wrap">
+
+    <div class="open">
+      <div class="text">
+        <p class="status"><i></i>Planned for 2027–2028</p>
+        <h1 tabindex="-1">Division B</h1>
+        <p class="lede">Division B will be our middle school program, beginning in the 2027–2028 school year.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Program</h2>
+      <div>
+        <p>Division B will emphasize instruction and hands-on engineering practice. Students will build foundational skills in mechanical design, electronics, and programming under the guidance of high school mentors.</p>
+        <p>Competition will be optional. Students who wish to compete may enter entry-level VEX tournaments.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Preparation</h2>
+      <ul class="dots">
+        <li>Host demonstrations and workshops at the middle school</li>
+        <li>Develop the curriculum and secure a faculty advisor</li>
+        <li>Arrange a regular meeting space and mentor schedule</li>
+        <li>Secure funding for equipment and competition fees</li>
+      </ul>
+    </div>
+
+    <div class="band">
+      <h2>Future expansion</h2>
+      <div>
+        <p>We are also considering STEM workshops for elementary school students, including introductory LEGO and VEX IQ modules.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Inquiries</h2>
+      <div>
+        <p>Families interested in Division B may contact us at <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= COMPETITIONS -->
+<section class="page sub" id="p-competitions">
+  <div class="wrap">
+
+    <div class="open">
+      <div class="text">
+        <h1 tabindex="-1">Competitions</h1>
+        <p class="lede">We compete in two robotics programs: Pioneers in Engineering this season, and the VEX V5 Robotics Competition beginning in 2027–2028.</p>
+      </div>
+    </div>
+
+    <!-- EDIT: competitions (summary cards) -->
+    <div class="comp-grid">
+      <article class="comp-card">
+        <p class="status"><i></i>2026–2027 season</p>
+        <h2>Pioneers in Engineering</h2>
+        <p class="when">Early 2027</p>
+        <p>Final tournament for Bay Area high school teams, organized by students at UC Berkeley. The exact date will be announced.</p>
+      </article>
+      <article class="comp-card later">
+        <p class="status"><i></i>Beginning 2027–2028</p>
+        <h2>VEX V5 Robotics Competition</h2>
+        <p class="when">Fall 2027 onward</p>
+        <p>Qualifying tournaments throughout the school year, leading to regional championships and the VEX Robotics World Championship.</p>
+      </article>
+    </div>
+
+    <div class="band">
+      <h2>Pioneers in Engineering</h2>
+      <div>
+        <p>Pioneers in Engineering (PiE) is a student organization at the University of California, Berkeley, founded in 2008. Each year it runs a robotics competition for high schools across the Bay Area.</p>
+        <dl class="facts-list">
+          <dt>Date</dt>
+          <dd>Early 2027. The exact date will be announced.</dd>
+          <dt>Format</dt>
+          <dd>Teams receive a robotics kit and are paired with UC Berkeley student mentors. Over the season, each team designs, builds, and programs a robot, then competes in a final tournament.</dd>
+          <dt>Scale</dt>
+          <dd>More than 700 high school students from over 30 Bay Area schools have competed in PiE.</dd>
+          <dt>Our team</dt>
+          <dd>Division C</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>VEX V5 Robotics Competition</h2>
+      <div>
+        <p>The VEX V5 Robotics Competition is run by the Robotics Education &amp; Competition Foundation. With more than 20,000 registered teams in over 50 countries, VEX is one of the largest robotics programs in the world. A new game is released each spring and played through the following school year.</p>
+        <dl class="facts-list">
+          <dt>Our first season</dt>
+          <dd>2027–2028</dd>
+          <dt>Format</dt>
+          <dd>Matches are played on a 12-by-12-foot field by two alliances of two teams each. Each match opens with a 15-second autonomous period, followed by 1 minute and 45 seconds of driver control.</dd>
+          <dt>Season</dt>
+          <dd>Local qualifying tournaments in the fall and winter, followed by regional championships and the VEX Robotics World Championship in the spring.</dd>
+          <dt>Current game</dt>
+          <dd>Override (2026–2027). The 2027–2028 game will be announced in spring 2027.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Estimated VEX costs</h2>
+      <div>
+        <table class="costs">
+          <tbody>
+            <tr><th scope="row">Team registration, per season</th><td>$175</td></tr>
+            <tr><th scope="row">Competition robot kit, one-time</th><td>About $1,285</td></tr>
+            <tr><th scope="row">Tournament entry fees</th><td>$50–$100 each</td></tr>
+            <tr><th scope="row">Practice game elements, optional</th><td>About $600</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Costs are for one team, based on 2026–2027 prices. Grants and sponsorships help us cover these expenses.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Results</h2>
+      <div>
+        <p>Results will be posted here after each competition.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= OPEN BENCH -->
+<section class="page sub starting" id="p-open-bench">
+  <div class="wrap">
+
+    <div class="open">
+      <div class="text">
+        <p class="status"><i></i>In development</p>
+        <h1 tabindex="-1">Open Bench</h1>
+        <p class="lede">Open Bench is our outreach program. We offer guidance in robotics and the wider fields of science, technology, engineering, and mathematics to any student, whether or not they are a member.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Questions</h2>
+      <div>
+        <p>Students may send questions about projects, coursework, programming, computer-aided design, electronics, or competitive robotics to <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>. A member of our team will respond.</p>
+        <p>When a question falls outside the team's expertise, we will help identify an appropriate resource.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Workshops and demonstrations</h2>
+      <div>
+        <p>We plan to offer hands-on demonstrations and workshops, beginning at the middle school. Dates will be published on the <a href="#schedule">Meeting and Competition Dates</a> page.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Scope</h2>
+      <div>
+        <p>Robotics draws on mathematics, physics, programming, and design. Questions in any of these areas, and in science and engineering more broadly, are welcome.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= MEETING AND COMPETITION DATES -->
+<section class="page sub" id="p-schedule">
+  <div class="wrap">
+
+    <div class="open">
+      <div class="text">
+        <h1 tabindex="-1">Meeting and Competition Dates</h1>
+        <p class="lede">We hold general meetings every Thursday. Select a past meeting to view its minutes.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Competitions</h2>
+      <!-- EDIT: competitions -->
+      <div class="event">
+        <p class="when">Early 2027</p>
+        <h3>Pioneers in Engineering (PiE) Robotics Competition</h3>
+        <p>Division C. The exact date will be announced. <a href="#competitions">Competition details</a></p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Upcoming meetings</h2>
+      <div>
+        <ul class="dots" id="upcoming"></ul>
+        <noscript><p>General meetings are held every Thursday.</p></noscript>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Past meetings</h2>
+      <div>
+        <div class="meet-list" id="past"></div>
+      </div>
+    </div>
+
+    <!-- EDIT: meetings
+         data-first is the date of the first meeting (year-month-day).
+         data-no-meeting lists Thursdays with no meeting (holidays, breaks), separated by spaces.
+         Meetings are listed automatically for every other Thursday.
+
+         EDIT: minutes
+         To post minutes, add an <article> with the meeting date inside the box below.
+         Example:
+           <article data-date="2026-11-19">
+             <p>Attendance: ...</p>
+             <ul>
+               <li>Decided ...</li>
+             </ul>
+           </article>
+    -->
+    <div id="minutes-store" data-first="2026-11-12" data-no-meeting="2026-11-26" hidden>
+      <article data-date="2026-11-12"></article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= MEMBERS -->
+<section class="page sub" id="p-members">
+  <div class="wrap">
+
+    <div class="open">
+      <div class="text">
+        <h1 tabindex="-1">Members</h1>
+        <p class="lede">Our club was founded in 2026 by the officers listed below.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Leadership</h2>
+      <!-- EDIT: leadership -->
+      <dl class="roles">
+        <dt>Presidents</dt>
+        <dd><span>Yui I.</span><span>Leo C.</span></dd>
+        <dt>Co-president</dt>
+        <dd><span>Dylan S.</span></dd>
+        <dt>Treasurers</dt>
+        <dd><span>Jason Y.</span><span>Jaron L.</span></dd>
+        <dt>Secretaries</dt>
+        <dd><span>Arrwin G.</span><span>Sonny L.</span></dd>
+      </dl>
+    </div>
+
+    <div class="band">
+      <h2>Membership</h2>
+      <div>
+        <p>Albany High School students who are interested in joining are invited to contact us at <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================= BOTTOM OF EVERY PAGE -->
+<footer class="end">
+  <div class="wrap">
+    <!-- EDIT: contact -->
+    <h2>Contact</h2>
+    <p class="wide"><a class="mail" href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/robotics.ahs/">@robotics.ahs</a></p>
+    <p class="fine">Albany Robotics is a student-led organization at Albany High School, Albany, California. Sponsored by the Albany PTSA.</p>
+  </div>
+</footer>
+
+<!-- meeting minutes pop-up -->
+<dialog class="minutes" id="minutes-dialog" aria-labelledby="minutes-title">
+  <div class="minutes-head">
+    <div>
+      <small>Meeting minutes</small>
+      <h2 id="minutes-title"></h2>
+    </div>
+    <button class="close" type="button">Close</button>
+  </div>
+  <div class="minutes-body"></div>
+</dialog>
+
+<!-- decorations -->
+<div class="shutter" aria-hidden="true"><i class="upper"></i><i class="lower"></i></div>
+<div class="scroll-bot" aria-hidden="true"><span class="rail"></span><span class="bot-slot" data-robot></span></div>
+
+<!-- snowflake drawing, used by the winter decorations -->
+<svg width="0" height="0" style="position: absolute;" aria-hidden="true" focusable="false">
+  <symbol id="flake" viewBox="-12 -12 24 24">
+    <path d="M0.00 0.00L0.00 -10.50M0.00 -6.20L-3.20 -9.20M0.00 -6.20L3.20 -9.20M0.00 0.00L9.09 -5.25M5.37 -3.10L6.37 -7.37M5.37 -3.10L9.57 -1.83M-0.00 0.00L9.09 5.25M5.37 3.10L9.57 1.83M5.37 3.10L6.37 7.37M-0.00 0.00L0.00 10.50M0.00 6.20L3.20 9.20M0.00 6.20L-3.20 9.20M0.00 -0.00L-9.09 5.25M-5.37 3.10L-6.37 7.37M-5.37 3.10L-9.57 1.83M0.00 0.00L-9.09 -5.25M-5.37 -3.10L-9.57 -1.83M-5.37 -3.10L-6.37 -7.37"/>
+  </symbol>
+</svg>
+
+<!-- the robot drawing, copied into each spot marked data-robot -->
+<template id="robot">
+  <svg class="bot" viewBox="0 0 120 100" aria-hidden="true" focusable="false">
+    <rect x="40" y="22" width="10" height="40" rx="2.5" class="k-moss"/>
+    <circle cx="45" cy="30" r="1.6" class="k-paper"/><circle cx="45" cy="38" r="1.6" class="k-paper"/>
+    <circle cx="45" cy="46" r="1.6" class="k-paper"/><circle cx="45" cy="54" r="1.6" class="k-paper"/>
+    <rect x="10" y="58" width="100" height="12" rx="3" class="k-clay"/>
+    <circle cx="18" cy="64" r="1.7" class="k-paper"/><circle cx="26" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="34" cy="64" r="1.7" class="k-paper"/><circle cx="42" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="50" cy="64" r="1.7" class="k-paper"/><circle cx="58" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="66" cy="64" r="1.7" class="k-paper"/><circle cx="74" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="82" cy="64" r="1.7" class="k-paper"/><circle cx="90" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="98" cy="64" r="1.7" class="k-paper"/>
+    <g class="wheel">
+      <circle cx="28" cy="80" r="15.5" class="tread"/>
+      <circle cx="28" cy="80" r="15" class="k-moss"/>
+      <circle cx="28" cy="80" r="5.5" class="k-paper"/>
+      <circle cx="28" cy="70.5" r="2.2" class="k-paper"/><circle cx="28" cy="89.5" r="2.2" class="k-paper"/>
+      <circle cx="18.5" cy="80" r="2.2" class="k-paper"/><circle cx="37.5" cy="80" r="2.2" class="k-paper"/>
+    </g>
+    <g class="wheel">
+      <circle cx="92" cy="80" r="15.5" class="tread"/>
+      <circle cx="92" cy="80" r="15" class="k-moss"/>
+      <circle cx="92" cy="80" r="5.5" class="k-paper"/>
+      <circle cx="92" cy="70.5" r="2.2" class="k-paper"/><circle cx="92" cy="89.5" r="2.2" class="k-paper"/>
+      <circle cx="82.5" cy="80" r="2.2" class="k-paper"/><circle cx="101.5" cy="80" r="2.2" class="k-paper"/>
+    </g>
+    <rect x="48" y="35" width="46" height="8" rx="2.5" class="k-clay"/>
+    <circle cx="56" cy="39" r="1.5" class="k-paper"/><circle cx="63" cy="39" r="1.5" class="k-paper"/>
+    <circle cx="70" cy="39" r="1.5" class="k-paper"/><circle cx="77" cy="39" r="1.5" class="k-paper"/>
+    <circle cx="84" cy="39" r="1.5" class="k-paper"/>
+    <rect x="92" y="30" width="6" height="18" rx="2" class="k-moss"/>
+    <rect x="97" y="30" width="13" height="5" rx="2" class="k-moss claw-top"/>
+    <rect x="97" y="43" width="13" height="5" rx="2" class="k-moss claw-bottom"/>
+    <rect x="22" y="3" width="40" height="27" rx="6" class="screen"/>
+    <g class="face">
+      <g class="eyes"><circle cx="35" cy="14" r="2.4" class="k-ink"/><circle cx="49" cy="14" r="2.4" class="k-ink"/></g>
+      <path d="M36 20.5 Q42 25 48 20.5" class="smile"/>
+    </g>
+    <g class="hat">
+      <path d="M26 7 Q38 -2 57 3 L71 10 Q63 9.5 58 8 Z" class="k-red"/>
+      <rect x="21" y="5.5" width="42" height="6" rx="3" class="k-snow"/>
+      <circle cx="71" cy="10.5" r="3.4" class="k-snow"/>
+    </g>
+    <g class="gift">
+      <rect x="99" y="35.5" width="11" height="7.5" rx="1" class="k-red"/>
+      <rect x="103.6" y="35.5" width="1.8" height="7.5" class="k-gold"/>
+      <rect x="99" y="38.4" width="11" height="1.6" class="k-gold"/>
+    </g>
+  </svg>
+</template>
+
+<script>
+/* Pages: one page shows at a time. The address ends in #div-c, #schedule, etc.,
+   so each page has its own link you can share.
+   Motion: scroll effects and robot animations. Turned off for anyone whose device
+   asks for reduced motion. */
+(function () {
+  var root = document.documentElement;
+  var motion = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  root.className += motion ? " js motion" : " js";
+
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function all(sel, scope) { return [].slice.call((scope || document).querySelectorAll(sel)); }
+
+  /* ---------- robot drawings ---------- */
+  var tpl = document.getElementById("robot");
+  all("[data-robot]").forEach(function (slot) {
+    var svg = tpl.content.firstElementChild.cloneNode(true);
+    if (slot.classList.contains("bot-slot")) slot.parentNode.replaceChild(svg, slot);
+    else slot.appendChild(svg);
+  });
+
+  /* ---------- pages ----------
+     Each page is a <section id="p-NAME">; its address is #NAME. */
+  var pages = ["home", "div-c", "div-b", "competitions", "open-bench", "schedule", "members"];
+  var titles = {
+    "home": "Albany Robotics",
+    "div-c": "Division C | Albany Robotics",
+    "div-b": "Division B | Albany Robotics",
+    "competitions": "Competitions | Albany Robotics",
+    "open-bench": "Open Bench | Albany Robotics",
+    "schedule": "Meeting and Competition Dates | Albany Robotics",
+    "members": "Members | Albany Robotics"
+  };
+  var current = null;
+  var afterShow = function () {};
+
+  function show(id, moved) {
+    pages.forEach(function (p) { document.getElementById("p-" + p).hidden = (p !== id); });
+    all(".nav-list a").forEach(function (a) {
+      if (a.getAttribute("data-page") === id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.title = titles[id];
+    current = id;
+    if (moved) {
+      window.scrollTo(0, 0);
+      var h = document.querySelector("#p-" + id + " h1");
+      if (h) h.focus({ preventScroll: true });
+    }
+    afterShow(id);
+  }
+
+  var shutter = document.querySelector(".shutter");
+  function go(id) {
+    closeMenu(false);
+    if (id === current) { window.scrollTo(0, 0); return; }
+    if (!motion) { show(id, true); return; }
+    shutter.classList.add("shut");
+    setTimeout(function () {
+      show(id, true);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { shutter.classList.remove("shut"); });
+      });
+    }, 340);
+  }
+
+  // links to pages switch pages without the browser jumping down to them
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    if (pages.indexOf(id) === -1) return;
+    e.preventDefault();
+    if (location.hash !== "#" + id) history.pushState(null, "", "#" + id);
+    go(id);
+  });
+  function fromAddress() {
+    var id = location.hash.replace("#", "") || "home";
+    if (pages.indexOf(id) !== -1) go(id);
+  }
+  window.addEventListener("popstate", fromAddress);
+  window.addEventListener("hashchange", fromAddress);
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  function start() {
+    show(startId, false);
+    if (location.hash) {
+      window.scrollTo(0, 0);
+      setTimeout(function () { window.scrollTo(0, 0); }, 0);
+    }
+  }
+
+  /* ---------- slide-out menu ---------- */
+  var menuBtn = document.querySelector(".menu-btn");
+  var drawer = document.getElementById("site-nav");
+  function openMenu() {
+    drawer.classList.add("open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    setTimeout(function () {
+      var a = drawer.querySelector('[aria-current="page"]') || drawer.querySelector(".nav-list a");
+      a.focus();
+    }, 80);
+  }
+  function closeMenu(returnFocus) {
+    if (!drawer.classList.contains("open")) return;
+    drawer.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    if (returnFocus) menuBtn.focus();
+  }
+  menuBtn.addEventListener("click", function () {
+    if (drawer.classList.contains("open")) closeMenu(true); else openMenu();
+  });
+  drawer.querySelector(".close").addEventListener("click", function () { closeMenu(true); });
+  drawer.querySelector(".backdrop").addEventListener("click", function () { closeMenu(true); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(true); });
+
+  /* ---------- meetings: every Thursday from the first meeting ---------- */
+  var store = document.getElementById("minutes-store");
+  var dialog = document.getElementById("minutes-dialog");
+  var minutes = {};
+  all("article", store).forEach(function (a) { minutes[a.getAttribute("data-date")] = a.innerHTML.trim(); });
+  var skip = (store.getAttribute("data-no-meeting") || "").split(/[\s,]+/);
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function key(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function nice(d) { return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }); }
+
+  var parts = store.getAttribute("data-first").split("-");
+  var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var past = [], upcoming = [];
+  for (var guard = 0; upcoming.length < 4 && guard < 600; guard++, d.setDate(d.getDate() + 7)) {
+    if (skip.indexOf(key(d)) !== -1) continue;
+    if (d <= today) past.push(new Date(d)); else upcoming.push(new Date(d));
+  }
+
+  var nextMeeting = document.getElementById("next-meeting");
+  if (nextMeeting && upcoming.length) {
+    nextMeeting.textContent = "Next: " + upcoming[0].toLocaleDateString("en-US", { month: "long", day: "numeric" });
+  }
+
+  var upList = document.getElementById("upcoming");
+  upcoming.forEach(function (m) {
+    var li = document.createElement("li");
+    li.textContent = nice(m);
+    upList.appendChild(li);
+  });
+
+  var pastList = document.getElementById("past");
+  past.reverse().forEach(function (m) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = "<span></span><span>View minutes</span>";
+    b.firstChild.textContent = nice(m);
+    b.addEventListener("click", function () { openMinutes(m); });
+    pastList.appendChild(b);
+  });
+  if (!past.length) pastList.outerHTML = "<p>No meetings have taken place yet.</p>";
+
+  function openMinutes(m) {
+    document.getElementById("minutes-title").textContent = nice(m);
+    var body = dialog.querySelector(".minutes-body");
+    var text = minutes[key(m)];
+    if (text) body.innerHTML = text;
+    else body.innerHTML = "<p>Minutes for this meeting have not been posted.</p>";
+    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute("open", "");
+  }
+  dialog.querySelector(".close").addEventListener("click", function () {
+    if (dialog.close) dialog.close(); else dialog.removeAttribute("open");
+  });
+  dialog.addEventListener("click", function (e) {
+    if (e.target !== dialog || !dialog.close) return;
+    var r = dialog.getBoundingClientRect();
+    var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside) dialog.close();
+  });
+
+  /* ---------- winter surprises ----------
+     Click either robot, type "snow" or "hohoho", enter the Konami code,
+     or click the big logo on Home five times. */
+  var now = new Date();
+  if (now.getMonth() === 11 || (now.getMonth() === 0 && now.getDate() <= 6)) root.classList.add("holiday");
+  var greetings = ["Happy holidays!", "Beep boop. Ho ho ho.", "Merry Christmas!", "Stay warm out there.", "Winter build season: on.", "Snow day? More build time."];
+  function say(host, text) {
+    if (!host) return;
+    var b = host.querySelector(".bubble");
+    if (!b) { b = document.createElement("span"); b.className = "bubble"; b.setAttribute("aria-hidden", "true"); host.appendChild(b); }
+    b.textContent = text || greetings[Math.floor(Math.random() * greetings.length)];
+    b.classList.remove("show"); void b.offsetWidth; b.classList.add("show");
+    clearTimeout(b.hideTimer);
+    b.hideTimer = setTimeout(function () { b.classList.remove("show"); }, 2600);
+  }
+  function festive() { all("svg.bot").forEach(function (svg) { svg.classList.add("festive"); }); }
+  function visibleRobotHost() {
+    var stage = document.querySelector("#p-div-c .robot-stage");
+    if (stage && stage.offsetParent) return stage;
+    return document.querySelector(".scroll-bot");
+  }
+  all("svg.bot").forEach(function (svg) {
+    svg.addEventListener("click", function () { festive(); say(svg.parentNode); });
+  });
+
+  var snowing = false;
+  function snow() {
+    document.querySelector(".end").classList.add("snowy");
+    if (!motion || snowing) return;
+    snowing = true;
+    var box = document.createElement("div");
+    box.className = "snow";
+    box.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < 80; i++) {
+      var f = document.createElement("i");
+      var size = 4 + Math.random() * 9;
+      f.style.left = (Math.random() * 100).toFixed(2) + "vw";
+      f.style.width = f.style.height = size.toFixed(1) + "px";
+      f.style.opacity = (0.55 + Math.random() * 0.45).toFixed(2);
+      f.style.animationDuration = (6 + Math.random() * 6).toFixed(2) + "s, " + (1.8 + Math.random() * 2).toFixed(2) + "s";
+      f.style.animationDelay = (-Math.random() * 7).toFixed(2) + "s, 0s";
+      box.appendChild(f);
+    }
+    document.body.appendChild(box);
+    setTimeout(function () { box.classList.add("melt"); }, 14000);
+    setTimeout(function () { box.parentNode.removeChild(box); snowing = false; }, 15500);
+  }
+
+  var konami = "arrowup arrowup arrowdown arrowdown arrowleft arrowright arrowleft arrowright b a";
+  var keys = [], typed = "";
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]")) return;
+    var k = e.key.toLowerCase();
+    keys.push(k); keys = keys.slice(-10);
+    if (keys.join(" ") === konami) { snow(); festive(); say(visibleRobotHost(), "Merry Christmas!"); }
+    if (k.length === 1) {
+      typed = (typed + k).slice(-6);
+      if (/snow$/.test(typed)) { snow(); typed = ""; }
+      if (/hohoho$/.test(typed)) { festive(); say(visibleRobotHost(), "Ho ho ho!"); typed = ""; }
+    }
+  });
+
+  var logo = document.querySelector(".hero .cutout");
+  var logoClicks = 0, logoTimer;
+  if (logo) logo.addEventListener("click", function () {
+    logoClicks++;
+    clearTimeout(logoTimer);
+    logoTimer = setTimeout(function () { logoClicks = 0; }, 1500);
+    if (logoClicks >= 5) {
+      logoClicks = 0;
+      logo.classList.remove("jingle"); void logo.offsetWidth; logo.classList.add("jingle");
+      snow();
+    }
+  });
+
+  /* ---------- winter season ----------
+     EDIT: winter  "auto" = on from November through February, "on" = always, "off" = never */
+  var WINTER = "auto";
+  var month = now.getMonth();
+  if (WINTER === "on" || (WINTER === "auto" && (month >= 10 || month <= 1))) {
+    root.classList.add("winter");
+    festive();
+    var greet = month === 11 ? "Happy holidays from Albany Robotics." : month === 0 ? "Happy New Year from Albany Robotics." : "";
+    if (greet) {
+      var g = document.createElement("p");
+      g.className = "greeting";
+      g.textContent = greet;
+      document.querySelector(".end .wrap").appendChild(g);
+    }
+    if (motion) {
+      var fl = document.createElement("div");
+      fl.className = "flurry";
+      fl.setAttribute("aria-hidden", "true");
+      for (var n = 0; n < 34; n++) {
+        var fk = document.createElement("i");
+        var sz = 3 + Math.random() * 4.5;
+        fk.style.left = (Math.random() * 100).toFixed(2) + "vw";
+        fk.style.width = fk.style.height = sz.toFixed(1) + "px";
+        fk.style.opacity = (0.5 + Math.random() * 0.4).toFixed(2);
+        fk.style.animationDuration = (14 + Math.random() * 12).toFixed(2) + "s, " + (3 + Math.random() * 3).toFixed(2) + "s";
+        fk.style.animationDelay = (-Math.random() * 26).toFixed(2) + "s, 0s";
+        fl.appendChild(fk);
+      }
+      document.body.insertBefore(fl, document.body.firstChild);
+    }
+  }
+
+  if (window.console && console.log) {
+    console.log("%cHappy holidays from Albany Robotics.%c\nTry typing \"snow\" anywhere on the page.",
+      "font: 700 16px sans-serif; color: #566529;", "font: 13px sans-serif; color: #96481f;");
+  }
+
+  var startId = location.hash.replace("#", "");
+  startId = pages.indexOf(startId) !== -1 ? startId : "home";
+
+  if (!motion) { start(); return; }
+
+  /* ---------- scroll motion ---------- */
+  var stages = all(".stage");
+  var hero = document.querySelector(".stage.hero");
+  var cutout = hero ? hero.querySelector(".cutout") : null;
+  var cards = all(".stack .parts li");
+  var timelines = all(".timeline");
+  var botBox = document.querySelector(".scroll-bot");
+  var bot = botBox.querySelector(".bot");
+  var botWheels = all(".wheel", bot);
+  var robotStage = document.querySelector("#p-div-c .robot-stage");
+  var vh = window.innerHeight;
+  var vertical = false;
+
+  // split the big sentence into words
+  var words = [];
+  var statement = document.querySelector(".statement");
+  if (statement) {
+    var list = statement.textContent.trim().split(/\s+/);
+    statement.textContent = "";
+    list.forEach(function (w, i) {
+      var span = document.createElement("span");
+      span.textContent = w;
+      statement.appendChild(span);
+      if (i < list.length - 1) statement.appendChild(document.createTextNode(" "));
+      words.push(span);
+    });
+  }
+
+  function reset(stage) {
+    var kind = stage.getAttribute("data-scrub");
+    if (kind === "hero") { stage.style.setProperty("--p", 0); stage.style.setProperty("--e", 0); }
+    if (kind === "words") words.forEach(function (w) { w.style.opacity = ""; });
+    if (kind === "stack") cards.forEach(function (c) { c.style.opacity = ""; c.style.translate = ""; c.style.rotate = ""; });
+  }
+
+  function measure() {
+    vh = window.innerHeight;
+    vertical = window.matchMedia("(min-width: 75.0625rem)").matches;
+    botBox.style.removeProperty("--x");
+    botBox.style.removeProperty("--y");
+    stages.forEach(function (stage) {
+      if (!stage.offsetParent) return;
+      var inner = stage.querySelector(".pin").firstElementChild;
+      stage.classList.remove("nopin");
+      // a scene only holds still while you scroll if it fits on the screen
+      if (inner.offsetHeight > vh - 16) { stage.classList.add("nopin"); reset(stage); }
+    });
+    if (cutout && cutout.offsetParent) {
+      hero.style.setProperty("--e", 0);
+      var r = cutout.getBoundingClientRect();
+      var pinTop = hero.querySelector(".pin").getBoundingClientRect().top;
+      hero.style.setProperty("--dx", (window.innerWidth / 2 - (r.left + r.width / 2)).toFixed(1) + "px");
+      hero.style.setProperty("--dy", (vh / 2 - (r.top - pinTop + r.height / 2)).toFixed(1) + "px");
+    }
+    update();
+  }
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    stages.forEach(function (stage) {
+      if (!stage.offsetParent || stage.classList.contains("nopin")) return;
+      var r = stage.getBoundingClientRect();
+      var span = r.height - vh;
+      var p = span > 0 ? clamp(-r.top / span) : 0;
+      var kind = stage.getAttribute("data-scrub");
+      if (kind === "hero") {
+        stage.style.setProperty("--p", p.toFixed(4));
+        stage.style.setProperty("--e", ease(clamp((p - 0.05) / 0.8)).toFixed(4));
+      } else if (kind === "words") {
+        var lit = clamp((p - 0.08) / 0.7) * words.length;
+        words.forEach(function (w, i) { w.style.opacity = (0.16 + 0.84 * clamp(lit - i)).toFixed(3); });
+      } else if (kind === "stack") {
+        cards.forEach(function (c, i) {
+          var t = clamp((p - 0.05 - i * 0.26) / 0.24);
+          var e = ease(t);
+          c.style.opacity = clamp(t * 1.6).toFixed(3);
+          c.style.translate = "0 " + ((1 - e) * vh * 0.5).toFixed(1) + "px";
+          c.style.rotate = ((1 - e) * (i % 2 ? 2.5 : -2.5)).toFixed(2) + "deg";
+        });
+      }
+    });
+
+    // timeline rail fills and each year lights up as you reach it
+    timelines.forEach(function (tl) {
+      if (!tl.offsetParent) return;
+      var r = tl.getBoundingClientRect();
+      var t = clamp((vh * 0.62 - r.top) / r.height);
+      tl.style.setProperty("--t", t.toFixed(4));
+      all(":scope > li", tl).forEach(function (li) {
+        li.classList.toggle("on", li.offsetTop + 12 <= t * tl.offsetHeight);
+      });
+    });
+
+    // robot on the rail: position follows how far down the page you are
+    var max = document.documentElement.scrollHeight - vh;
+    var sp = max > 0 ? clamp(window.scrollY / max) : 0;
+    if (vertical) botBox.style.setProperty("--y", (sp * (botBox.clientHeight - bot.getBoundingClientRect().height)).toFixed(1) + "px");
+    else botBox.style.setProperty("--x", (sp * (botBox.clientWidth - bot.getBoundingClientRect().width)).toFixed(1) + "px");
+    var deg = (window.scrollY * 0.9).toFixed(1);
+    botWheels.forEach(function (w) { w.style.transform = "rotate(" + deg + "deg)"; });
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener("resize", measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  // things that fade up once as they come into view
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -10% 0px" }) : null;
+
+  function reveal(el, delay) {
+    el.setAttribute("data-reveal", "");
+    el.style.setProperty("--d", delay.toFixed(2) + "s");
+    if (io) io.observe(el); else el.classList.add("in");
+  }
+  function outside(el) { return !el.closest(".stage"); }
+
+  all(".hero h1, .hero .lede, .hero .cta, .hero .cutout, .hero .facts li").forEach(function (el, i) { reveal(el, i * 0.1); });
+  all(".band, .sub .open > .text, .comp-grid, .end .wrap").filter(outside).forEach(function (box) {
+    [].slice.call(box.children).forEach(function (kid, i) { reveal(kid, i * 0.1); });
+  });
+  all(".dots li").filter(outside).forEach(function (li) {
+    reveal(li, 0.15 + [].indexOf.call(li.parentNode.children, li) * 0.07);
+  });
+  all(".roles > *").forEach(function (el, i) { reveal(el, 0.1 + Math.floor(i / 2) * 0.1); });
+
+  afterShow = function (id) {
+    measure();
+    if (id === "div-c" && robotStage) {
+      robotStage.classList.remove("go");
+      void robotStage.offsetWidth;
+      robotStage.classList.add("go");
+    }
+  };
+  start();
+})();
+</script>
+</body>
+</html>
