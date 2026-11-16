@@ -1,0 +1,1622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+  ALBANY ROBOTICS WEBSITE
+  =======================
+  This one file is the whole site. It needs these files next to it:
+    logo.png              the club logo
+    ptsa-logo.jpg         Albany PTSA's logo (Sponsor section)
+    source-serif-4.woff2  heading font
+    source-sans-3.woff2   text font
+    favicon.ico, favicon-96.png, apple-touch-icon.png   site icons
+    robots.txt, sitemap.xml                             for search engines
+
+  HOW TO EDIT
+  Search this file for "EDIT:" to jump to the parts that change most:
+    EDIT: timeline       the 2026-2027 / 2027-2028 / 2028-Future lists (one copy, shown on Home and Division C)
+    EDIT: competitions   competition dates
+    EDIT: meetings       first meeting date and Thursdays with no meeting
+    EDIT: minutes        where to paste meeting minutes
+    EDIT: leadership     officer names and roles (Members page)
+    EDIT: members        club member names (Members page)
+    EDIT: sponsors       sponsor logos
+    EDIT: photo          how to add a photo
+    EDIT: contact        email, Discord and Instagram at the bottom
+    EDIT: discord        the Discord invite link (search for discord.gg)
+    EDIT: winter         winter decorations: "auto" (November through February), "on", or "off"
+
+  Change the words between the tags and keep the tags themselves.
+  For example, in  <li>Build a robot</li>  only change "Build a robot".
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albany Robotics | Albany High School Robotics Club, Albany, CA</title>
+<meta name="description" content="Albany Robotics is the student-led robotics club at Albany High School in Albany, California. We compete in Pioneers in Engineering (PiE) and VEX robotics and mentor middle school students.">
+<link rel="canonical" href="https://albany-robotics.github.io/">
+<meta property="og:title" content="Albany Robotics | Albany High School Robotics Club">
+<meta property="og:description" content="The student-led robotics club at Albany High School in Albany, California.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Albany Robotics">
+<meta property="og:url" content="https://albany-robotics.github.io/">
+<meta property="og:image" content="https://albany-robotics.github.io/logo.png">
+<meta name="application-name" content="Albany Robotics">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className = "js";</script>
+<!-- Tells Google the site's name, so search results say "Albany Robotics" instead of "GitHub" -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Albany Robotics",
+  "alternateName": ["Albany High School Robotics Club", "AHS Robotics"],
+  "url": "https://albany-robotics.github.io/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Albany Robotics",
+  "alternateName": ["Albany High School Robotics Club", "Albany High Robotics", "Albany California Robotics Club"],
+  "description": "The student-led robotics club at Albany High School in Albany, California.",
+  "url": "https://albany-robotics.github.io/",
+  "logo": "https://albany-robotics.github.io/logo.png",
+  "email": "albanyroboticsleadership@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Albany", "addressRegion": "CA", "addressCountry": "US" },
+  "sameAs": ["https://www.instagram.com/robotics.ahs/", "https://discord.gg/Bs73Jh7NzJ"]
+}
+</script>
+
+<style>
+/* Fonts: Source Serif 4 and Source Sans 3, SIL Open Font License. */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("source-serif-4.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("source-sans-3.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  /* page colors */
+  --bg: #ffffff;
+  --ink: #1b1d19;
+  --muted: #5a5f54;
+  --rule: #d9dad2;
+  --tint: #f4f5f0;
+  --green: #4f6228;
+  --green-dark: #3a4a1c;
+  /* drawing colors, taken from the logo */
+  --moss: #75863e;
+  --moss-deep: #566529;
+  --clay: #c97240;
+  --stone: #dcdfd3;
+  --paper: #ffffff;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.1875rem/1.6 var(--sans);
+  overflow-x: clip;
+}
+img, svg { max-width: 100%; }
+img { height: auto; display: block; }
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(2.7rem, 6vw, 4.5rem); line-height: 1.04; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.4rem; }
+h1:focus { outline: none; }
+p { margin: 0 0 1em; max-width: 68ch; }
+p:last-child { margin-bottom: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--ink); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+
+.wrap { max-width: 72rem; margin: 0 auto; padding-inline: clamp(1.2rem, 4vw, 3rem); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 0; z-index: 60; padding: 0.6rem 1rem; background: var(--ink); color: #fff; }
+.skip:focus { left: 0.5rem; top: 0.5rem; }
+
+.btn {
+  display: inline-block; padding: 0.65rem 1.2rem 0.7rem; border: 1px solid var(--green); border-radius: 4px;
+  background: var(--green); color: #fff; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer;
+}
+.btn:hover { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+.btn.plain { background: transparent; color: var(--green); }
+.btn.plain:hover { background: var(--tint); color: var(--green-dark); }
+
+/* ---------- header ---------- */
+.site-header { position: relative; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--rule); }
+.site-header .wrap { display: flex; align-items: center; gap: 1.1rem; min-height: 4.5rem; padding-block: 0.6rem; }
+.menu-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.9rem 0.55rem;
+  border: 1px solid var(--ink); border-radius: 4px; background: var(--bg); font-weight: 600; font-size: 1.05rem; line-height: 1.2; cursor: pointer;
+}
+.menu-btn:hover { background: var(--ink); color: #fff; }
+.bars { display: grid; gap: 4px; }
+.bars i { display: block; width: 1.1rem; height: 2px; background: currentColor; }
+.brand { display: flex; align-items: center; gap: 0.7rem; color: var(--ink); text-decoration: none; font: 600 1.45rem/1 var(--serif); letter-spacing: -0.01em; }
+.brand img { width: 2.9rem; height: 2.9rem; }
+
+/* ---------- search ---------- */
+.search { position: relative; margin-left: auto; width: min(21rem, 38vw); }
+.search svg { position: absolute; left: 0.75rem; top: 50%; translate: 0 -50%; width: 1.1rem; height: 1.1rem; fill: none; stroke: var(--muted); stroke-width: 2.2; stroke-linecap: round; pointer-events: none; }
+.search input {
+  width: 100%; padding: 0.55rem 0.8rem 0.6rem 2.4rem; border: 1px solid #b4b7aa; border-radius: 4px;
+  background: var(--bg); color: var(--ink); font: inherit; font-size: 1.05rem; line-height: 1.3; -webkit-appearance: none; appearance: none;
+}
+.search input::placeholder { color: var(--muted); }
+.search input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(79, 98, 40, 0.22); }
+.results {
+  position: absolute; right: 0; top: calc(100% + 0.4rem); width: min(27rem, calc(100vw - 2rem)); max-height: 70vh; overflow-y: auto;
+  padding: 0.35rem; background: var(--bg); border: 1px solid #b4b7aa; border-radius: 6px; box-shadow: 0 0.8rem 2rem rgba(27, 29, 25, 0.16);
+}
+.results li { padding: 0.5rem 0.75rem 0.55rem; border-radius: 4px; cursor: pointer; }
+.results li.active { background: var(--tint); }
+.results b { display: block; font-weight: 600; line-height: 1.3; }
+.results span { display: block; color: var(--muted); font-size: 0.98rem; line-height: 1.35; }
+.results .none { cursor: default; color: var(--muted); }
+.found { outline: 3px solid #e8c46b; outline-offset: 6px; background: rgba(232, 196, 107, 0.2); }
+
+/* ---------- menu ---------- */
+.drawer { position: fixed; inset: 0; z-index: 40; visibility: hidden; transition: visibility 0s 0.3s; }
+.drawer.open { visibility: visible; transition: none; }
+.backdrop { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: rgba(27, 29, 25, 0.45); opacity: 0; transition: opacity 0.3s; cursor: pointer; }
+.drawer.open .backdrop { opacity: 1; }
+.panel {
+  position: absolute; inset: 0 auto 0 0; width: min(24rem, 88vw); overflow-y: auto; padding: 1.1rem 2.9rem 2rem 1.4rem;
+  background: var(--bg); border-right: 1px solid var(--rule); transform: translateX(-100%); transition: transform 0.3s ease;
+}
+.drawer.open .panel { transform: none; }
+.panel-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); font: 600 1.25rem var(--serif); }
+.close { padding: 0.4rem 0.8rem 0.45rem; border: 1px solid var(--ink); border-radius: 4px; background: var(--bg); font: 600 1rem/1.2 var(--sans); cursor: pointer; }
+.close:hover { background: var(--ink); color: #fff; }
+.nav-list a { display: block; padding: 0.7rem 0.8rem 0.75rem; border-left: 3px solid transparent; color: var(--ink); text-decoration: none; }
+.nav-list b { display: block; font: 600 1.35rem/1.2 var(--serif); }
+.nav-list small { display: block; margin-top: 0.1rem; color: var(--muted); font-size: 1rem; }
+.nav-list a:hover { background: var(--tint); }
+.nav-list a[aria-current="page"] { border-left-color: var(--green); background: var(--tint); }
+/* a strip of holes down the menu's edge; they light up in order when it opens */
+.holes { position: absolute; right: 1.1rem; top: 1.5rem; bottom: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+.holes i { display: block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--rule); transition: background-color 0.2s; }
+.drawer.open .holes i { background: var(--moss); transition-delay: calc(0.1s + var(--i) * 0.03s); }
+
+/* ---------- page change: two metal plates close and open ---------- */
+.shutter { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+.shutter i {
+  position: absolute; left: 0; right: 0; height: 50.5%; background-color: var(--green);
+  background-image: radial-gradient(circle, #fff 0.24rem, transparent 0.28rem); background-size: 1.8rem 1.8rem; background-repeat: repeat-x;
+  visibility: hidden; transition: transform 0.28s cubic-bezier(0.7, 0, 0.3, 1), visibility 0s 0.28s;
+}
+.shutter .upper { top: 0; transform: translateY(-101%); background-position: 0.9rem calc(100% - 0.45rem); }
+.shutter .lower { bottom: 0; transform: translateY(101%); background-color: var(--green-dark); background-position: 0.9rem 0.45rem; }
+.shutter.shut i { transform: none; visibility: visible; transition-delay: 0s; }
+
+/* ---------- pages ---------- */
+.js .page[hidden] { display: none; }
+.lede { font-size: 1.4rem; line-height: 1.5; max-width: 46ch; }
+.status { color: var(--muted); font-size: 1.05rem; }
+.note { color: var(--muted); font-size: 1rem; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2.2rem 4rem; align-items: center; padding-block: 2.6rem 2.8rem; }
+.hero h1 { font-size: clamp(3rem, min(7vw, 12vh), 5.4rem); line-height: 1; }
+.hero .lede { margin-top: 1.2rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-top: 1.6rem; }
+.hero-logo { width: min(17rem, 38vh); margin-right: 2rem; }
+.glance { grid-column: 1 / -1; }
+.glance dl { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 2.5rem; border-top: 2px solid var(--ink); }
+.glance dl > div { padding-top: 0.8rem; }
+.glance dt { color: var(--muted); font-size: 1rem; }
+.glance dd { margin: 0; font: 600 1.55rem/1.2 var(--serif); }
+.glance dd span { display: block; margin-top: 0.2rem; font: 400 1.05rem/1.4 var(--sans); }
+
+.statement-band { background: var(--tint); border-block: 1px solid var(--rule); }
+.statement { margin: 0; padding-block: 3.2rem; max-width: 30ch; font: 500 clamp(1.8rem, 3.7vw, 3rem)/1.18 var(--serif); letter-spacing: -0.012em; }
+
+.page-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem 3rem; align-items: end; padding-block: 3rem 2.6rem; }
+.page-head.with-art { grid-template-columns: minmax(0, 1fr) minmax(0, 23rem); }
+.page-head .lede { margin-top: 1.1rem; max-width: 60ch; }
+.page-head .status { margin-top: 1rem; }
+
+/* a section: heading on the left, content on the right */
+.band { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 1rem 3rem; align-items: start; padding-block: 2.5rem; border-top: 1px solid var(--rule); }
+.band > h2 { max-width: 10ch; }
+.band.plain { border-top: 0; }
+
+.programs li { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr) auto; gap: 0.3rem 1.5rem; align-items: baseline; padding-block: 1rem; border-top: 1px solid var(--rule); }
+.programs h3 a { color: var(--ink); }
+.programs h3 a:hover { color: var(--green); }
+.programs .status { white-space: nowrap; }
+.intro { font-size: 1.35rem; line-height: 1.45; margin-bottom: 1.2rem; }
+
+.bullets li { position: relative; padding-left: 1.4rem; max-width: 62ch; }
+.bullets li + li { margin-top: 0.4rem; }
+.bullets li::before { content: ""; position: absolute; left: 0.15rem; top: 0.68em; width: 0.42rem; height: 0.42rem; background: var(--moss); }
+
+/* timeline: a rail that fills as you scroll */
+.timeline { position: relative; padding-left: 2.6rem; --t: 1; }
+.timeline::before, .timeline::after { content: ""; position: absolute; left: 0.5rem; top: 0.6rem; width: 3px; }
+.timeline::before { bottom: 0.6rem; background: var(--rule); }
+.timeline::after { height: calc((100% - 1.2rem) * var(--t)); background: var(--green); }
+.motion .timeline { --t: 0; }
+.timeline > li { position: relative; padding-bottom: 2.2rem; }
+.timeline > li:last-child { padding-bottom: 0; }
+.timeline .node { position: absolute; z-index: 1; left: -2.6rem; top: 0.42rem; width: 1.15rem; height: 1.15rem; border: 3px solid var(--green); border-radius: 50%; background: var(--green); transition: background-color 0.25s; }
+.motion .timeline .node { background: var(--bg); }
+.motion .timeline > li.on .node { background: var(--green); }
+.timeline h3 { margin-bottom: 0.7rem; font-size: 2.1rem; }
+
+table { width: 100%; max-width: 46rem; border-collapse: collapse; }
+th, td { padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+thead th { border-bottom: 2px solid var(--ink); font-weight: 600; }
+tbody th { font-weight: 600; }
+td:last-child, th:last-child { padding-right: 0; }
+.costs td { text-align: right; white-space: nowrap; font-weight: 600; }
+.costs th { font-weight: 400; }
+
+.facts { margin: 1.3rem 0 0; display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); max-width: 50rem; }
+.facts dt, .facts dd { margin: 0; padding-block: 0.7rem; border-top: 1px solid var(--rule); }
+.facts dt { font-weight: 600; }
+
+.meet-list { max-width: 40rem; border-top: 1px solid var(--rule); }
+.meet-list button { display: flex; justify-content: space-between; gap: 1rem; width: 100%; padding: 0.8rem 0.5rem 0.85rem 0; border: 0; border-bottom: 1px solid var(--rule); background: none; text-align: left; cursor: pointer; }
+.meet-list button:hover { background: var(--tint); }
+.meet-list button span:last-child { color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; white-space: nowrap; }
+
+dialog.minutes { width: min(42rem, calc(100vw - 2rem)); max-height: min(80vh, 46rem); padding: 1.6rem 1.8rem 1.8rem; border: 1px solid var(--ink); border-radius: 6px; background: var(--bg); color: var(--ink); box-shadow: 0 1.2rem 3rem rgba(27, 29, 25, 0.25); }
+dialog.minutes::backdrop { background: rgba(27, 29, 25, 0.45); }
+.minutes-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; margin-bottom: 1.1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+.minutes-head h2 { font-size: 1.6rem; }
+.minutes-head small { display: block; margin-bottom: 0.15rem; color: var(--muted); font-size: 1rem; }
+.minutes-body ul { list-style: disc; padding-left: 1.3rem; }
+
+.member-list { columns: 3 9rem; column-gap: 2rem; max-width: 40rem; }
+.member-list li { padding-block: 0.25rem; break-inside: avoid; }
+.sponsor img { width: 12rem; }
+.photo { margin: 0 0 1.4rem; max-width: 42rem; }
+.photo img { width: 100%; }
+.photo figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 1rem; }
+
+/* ---------- footer ---------- */
+.site-footer { margin-top: 3.5rem; background: var(--tint); border-top: 1px solid var(--rule); font-size: 1.1rem; }
+.site-footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2rem 3rem; padding-block: 2.6rem 3rem; }
+.site-footer h2 { margin-bottom: 0.7rem; font-size: 1.3rem; }
+.site-footer li + li { margin-top: 0.3rem; }
+.site-footer .mail { font-weight: 600; overflow-wrap: anywhere; }
+
+/* ---------- robots ---------- */
+.bot .k-moss { fill: var(--moss); }
+.bot .k-clay { fill: var(--clay); }
+.bot .k-paper { fill: var(--paper); }
+.bot .k-ink { fill: var(--ink); }
+.bot .k-red { fill: #b8402f; }
+.bot .k-snow { fill: #fff; stroke: #c9d0d6; stroke-width: 0.6; }
+.bot .k-gold { fill: #e8c46b; }
+.bot .tread { fill: none; stroke: var(--moss); stroke-width: 5; stroke-dasharray: 3.2 2.9; }
+.bot .screen { fill: var(--paper); stroke: var(--moss-deep); stroke-width: 3; }
+.bot .smile { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
+.bot .wheel, .bot .eyes, .bot .face, .bot .claw-top, .bot .claw-bottom { transform-box: fill-box; transform-origin: center; }
+.bot .hat, .bot .gift { display: none; }
+.bot.festive .hat, .bot.festive .gift { display: inline; }
+.bot { display: block; cursor: pointer; }
+
+.robot-stage { position: relative; justify-self: end; width: min(100%, 23rem); padding-bottom: 3px; border-bottom: 3px solid var(--rule); }
+.robot-stage .bot { width: 100%; height: auto; }
+.motion .robot-stage.go .bot { animation: drive-in 1.8s cubic-bezier(0.16, 0.8, 0.24, 1) both; }
+.motion .robot-stage.go .wheel { animation: roll 1.8s cubic-bezier(0.16, 0.8, 0.24, 1) both; }
+.motion .robot-stage.go .claw-top { animation: grip-top 0.45s ease-in-out 1.8s 4 alternate; }
+.motion .robot-stage.go .claw-bottom { animation: grip-bottom 0.45s ease-in-out 1.8s 4 alternate; }
+.motion .robot-stage.go .eyes { animation: blink 0.14s linear 3s 2 alternate; }
+@keyframes drive-in { from { translate: -75vw 0; } }
+@keyframes roll { from { transform: rotate(-1100deg); } }
+@keyframes grip-top { to { transform: translateY(4.5px); } }
+@keyframes grip-bottom { to { transform: translateY(-4.5px); } }
+@keyframes blink { to { transform: scaleY(0.1); } }
+
+/* small robot that rides a rail down the right edge as you scroll (wide screens only) */
+.rail-bot { display: none; }
+@media (min-width: 80rem) {
+  .motion .rail-bot { display: block; position: fixed; z-index: 15; top: 6rem; bottom: 1.4rem; right: 0.7rem; width: 3.5rem; pointer-events: none; }
+  .rail-bot::before { content: ""; position: absolute; left: 0.1rem; top: 0; bottom: 0; width: 3px; background: var(--rule); }
+  .rail-bot .bot { position: absolute; left: 0.4rem; top: 0; width: 3.6rem; height: 3rem; transform-origin: 0 0; transform: translate(3rem, var(--y, 0px)) rotate(90deg); pointer-events: auto; }
+  .rail-bot .face { transform: rotate(-90deg); }
+  .rail-bot .bubble { right: 4.2rem; top: calc(var(--y, 0px) + 0.4rem); border-radius: 6px 2px 6px 6px; }
+}
+
+.bubble { position: absolute; z-index: 3; padding: 0.4rem 0.75rem 0.45rem; border-radius: 6px 6px 6px 2px; background: var(--ink); color: #fff; font-size: 1rem; font-weight: 600; line-height: 1.2; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s; }
+.bubble.show { opacity: 1; }
+.robot-stage .bubble { top: -0.4rem; left: 34%; }
+
+/* ---------- winter (see "EDIT: winter") ---------- */
+.snowfall { position: fixed; inset: 0; overflow: hidden; pointer-events: none; transition: opacity 1.4s; }
+.snowfall.back { z-index: 0; }
+.snowfall.front { z-index: 45; }
+.snowfall.melt { opacity: 0; }
+.snowfall i { position: absolute; top: -20px; display: block; border-radius: 50%; background: #c3ced8; animation: fall linear infinite, sway ease-in-out infinite alternate; }
+@keyframes fall { to { translate: 0 calc(100vh + 40px); } }
+@keyframes sway { from { margin-left: -14px; } to { margin-left: 14px; } }
+.winter main, .winter .site-footer { position: relative; z-index: 1; }
+.winter .statement-band, .winter .site-footer { background: rgba(244, 245, 240, 0.88); }
+.winter .drawer.open .holes i:nth-child(3n+1) { background: #c9483a; }
+.winter .drawer.open .holes i:nth-child(3n+2) { background: #e3b84f; }
+.winter .drawer.open .holes i:nth-child(3n) { background: var(--moss); }
+.motion.winter .drawer.open .holes i { animation: twinkle 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.11s); }
+@keyframes twinkle { 50% { opacity: 0.35; } }
+.winter .timeline > li:nth-child(1).on .node { background: #c9483a; border-color: #c9483a; }
+.winter .timeline > li:nth-child(2).on .node { background: #e3b84f; border-color: #e3b84f; }
+.jingle { animation: jingle 0.8s ease-in-out; }
+@keyframes jingle { 20% { rotate: -8deg; } 40% { rotate: 7deg; } 60% { rotate: -5deg; } 80% { rotate: 3deg; } }
+
+/* winter scene on Home: a robot finishes a snowman */
+.scene-band { display: none; }
+.winter .scene-band { display: grid; padding-block: 0 1.5rem; }
+.snow-scene {
+  width: 100%; max-width: 34rem; cursor: pointer; background: #e9eef2;
+  -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent);
+  mask-image: radial-gradient(closest-side, #000 62%, transparent);
+}
+.scene-art { display: block; width: 100%; height: auto; }
+.sc-stone { fill: #d3d9c8; }
+.sc-snow { fill: #fff; }
+.sc-ball { fill: #fff; stroke: #c3ccd3; stroke-width: 2; }
+.sc-dot { fill: #dfe5ea; }
+.sc-shadow { fill: rgba(43, 52, 23, 0.08); }
+.sc-ink { fill: var(--ink); }
+.sc-moss { fill: var(--moss); }
+.sc-deep { fill: var(--moss-deep); }
+.sc-clay { fill: var(--clay); }
+.sc-red { fill: #b8402f; }
+.sc-gold { fill: #e8c46b; }
+.sc-paper { fill: var(--paper); }
+.sc-bark { fill: #6b5332; }
+.sc-trunk { fill: none; stroke: var(--moss-deep); stroke-width: 3; stroke-linecap: round; }
+.sc-twig { fill: none; stroke: #6b5332; stroke-width: 3.2; stroke-linecap: round; }
+.sc-tread { fill: none; stroke: var(--moss); stroke-width: 3; stroke-dasharray: 6 5; }
+.sc-screen { fill: var(--paper); stroke: var(--moss-deep); stroke-width: 4; }
+.sc-smile { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.sc-muff { fill: none; stroke: var(--clay); stroke-width: 6; stroke-linecap: round; }
+.sm-base-spin, .sm-mid-spin, .rb-wheel, .pop, .rb-eyes { transform-box: fill-box; transform-origin: center; }
+.rb-arm { transform-box: view-box; transform-origin: 641px 150px; transform: rotate(18deg); }
+.rb-carry { opacity: 0; }
+.sc-flake { display: none; }
+.motion .sc-flake { display: inline; animation: sc-fall linear infinite; }
+.motion .rb-led { animation: led 1.2s steps(2) infinite; }
+.motion .snow-scene.armed:not(.play) * { animation-play-state: paused; }
+.motion .snow-scene.armed .sm-base-move { animation: sm-roll-in 1.6s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.motion .snow-scene.armed .sm-base-spin { animation: sm-grow 1.6s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.motion .snow-scene.armed .sm-mid-move { animation: sm-hop 1.5s ease-in-out 1.3s both; }
+.motion .snow-scene.armed .sm-mid-spin { animation: sm-grow-2 1.5s ease-out 1.3s both; }
+.motion .snow-scene.armed .rb-move { animation: rb-drive 1.9s cubic-bezier(0.2, 0.75, 0.3, 1) 0.4s both; }
+.motion .snow-scene.armed .rb-wheel { animation: rb-roll 1.9s cubic-bezier(0.2, 0.75, 0.3, 1) 0.4s both; }
+.motion .snow-scene.armed .rb-arm { animation: rb-place 6.4s ease-in-out both; }
+.motion .snow-scene.armed .rb-carry { animation: carry 6.4s linear both; }
+.motion .snow-scene.armed .sm-head { animation: placed 6.4s linear both; }
+.motion .snow-scene.armed .pop { animation: pop 0.4s cubic-bezier(0.3, 1.6, 0.5, 1) var(--pd, 0s) both; }
+.motion .snow-scene.armed .rb-eyes { animation: blink 0.14s linear 5.9s 2 alternate; }
+@keyframes sm-roll-in { from { translate: -320px 0; } }
+@keyframes sm-grow { from { transform: rotate(-600deg) scale(0.4); } }
+@keyframes sm-hop { 0% { translate: -340px 78px; } 62% { translate: -66px 78px; } 80% { translate: -14px -30px; } 100% { translate: 0 0; } }
+@keyframes sm-grow-2 { 0% { transform: rotate(-500deg) scale(0.5); } 62% { transform: rotate(-20deg) scale(1); } 100% { transform: none; } }
+@keyframes rb-drive { from { translate: 440px 0; } }
+@keyframes rb-roll { from { transform: rotate(1100deg); } }
+@keyframes rb-place { 0%, 44% { transform: rotate(22deg); } 62%, 68% { transform: rotate(0deg); } 78% { transform: rotate(18deg); } 85% { transform: rotate(9deg); } 92%, 100% { transform: rotate(18deg); } }
+@keyframes carry { 0%, 65.9% { opacity: 1; } 66%, 100% { opacity: 0; } }
+@keyframes placed { 0%, 65.9% { opacity: 0; } 66%, 100% { opacity: 1; } }
+@keyframes pop { from { transform: scale(0); } }
+@keyframes sc-fall { from { translate: 0 -20px; } to { translate: 0 370px; } }
+@keyframes led { 50% { opacity: 0.25; } }
+
+/* ---------- small screens ---------- */
+@media (min-width: 52rem) {
+  .site-header { position: sticky; top: 0; }
+}
+@media (max-width: 52rem) {
+  .site-header .wrap { flex-wrap: wrap; row-gap: 0.6rem; }
+  .search { order: 3; width: 100%; margin-left: 0; }
+  .results { left: 0; right: 0; width: auto; }
+  .brand { font-size: 1.3rem; }
+  .hero, .page-head.with-art { grid-template-columns: minmax(0, 1fr); padding-block: 2rem 2.4rem; }
+  .page-head { padding-block: 2rem; }
+  .lede { font-size: 1.25rem; }
+  .hero-logo { width: 9rem; margin: 0; }
+  .glance dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; border-top: 0; }
+  .glance dl > div { padding-block: 0.8rem; border-top: 1px solid var(--rule); }
+  .glance dd { font-size: 1.3rem; }
+  .robot-stage { justify-self: start; width: min(100%, 17rem); }
+  .band { grid-template-columns: minmax(0, 1fr); padding-block: 2rem; }
+  .band > h2 { max-width: none; }
+  .programs li { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts dd { padding-top: 0; border-top: 0; }
+  .site-footer .wrap { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+/* without JavaScript the menu shows as a plain list */
+html:not(.js) .drawer { position: static; visibility: visible; }
+html:not(.js) .panel { position: static; width: auto; transform: none; border: 0; }
+html:not(.js) .menu-btn, html:not(.js) .search, html:not(.js) .backdrop, html:not(.js) .close, html:not(.js) .holes { display: none; }
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>Menu
+    </button>
+    <a class="brand" href="#home"><img src="logo.png" alt="" width="560" height="560">Albany Robotics</a>
+    <div class="search" role="search">
+      <label class="sr" for="q">Search this site</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg>
+      <input id="q" type="search" placeholder="Search" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list">
+      <ul class="results" id="results" role="listbox" aria-label="Search results" hidden></ul>
+    </div>
+  </div>
+</header>
+
+<!-- ======================================================= MENU -->
+<nav class="drawer" id="site-nav" aria-label="Site">
+  <button class="backdrop" type="button" tabindex="-1" aria-label="Close menu"></button>
+  <div class="panel">
+    <span class="holes" aria-hidden="true">
+      <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i>
+      <i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i>
+      <i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i>
+    </span>
+    <div class="panel-top">Menu <button class="close" type="button">Close</button></div>
+    <ul class="nav-list">
+      <li><a href="#home"><b>Home</b><small>Overview and timeline</small></a></li>
+      <li><a href="#div-c"><b>Division C</b><small>High school competition team</small></a></li>
+      <li><a href="#div-b"><b>Division B</b><small>Middle school program</small></a></li>
+      <li><a href="#competitions"><b>Competitions</b><small>PiE and VEX</small></a></li>
+      <li><a href="#open-bench"><b>Open Bench</b><small>STEM outreach</small></a></li>
+      <li><a href="#schedule"><b>Meeting and Competition Dates</b><small>Schedule and meeting minutes</small></a></li>
+      <li><a href="#members"><b>Members</b><small>Leadership and membership</small></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ======================================================= HOME -->
+<section class="page" id="p-home" data-name="Home">
+
+  <div class="wrap hero">
+    <div>
+      <h1 tabindex="-1">Albany Robotics</h1>
+      <p class="lede">We are the student-led robotics club at Albany High School in Albany, California. This season we will compete in the Pioneers in Engineering Robotics Competition, and next year we plan to enter VEX competition and open a middle school program.</p>
+      <p class="actions"><a class="btn" href="#competitions">View competitions</a><a class="btn plain" href="#members">How to join</a></p>
+    </div>
+    <img class="hero-logo" id="big-logo" src="logo.png" alt="Albany Robotics logo" width="560" height="560">
+    <section class="glance">
+      <h2 class="sr">At a glance</h2>
+      <dl>
+        <div><dt>Founded</dt><dd>2026 <span>Albany High School</span></dd></div>
+        <div><dt>Meetings</dt><dd>Every Thursday <span id="next-meeting"></span></dd></div>
+        <div><dt>Next competition</dt><dd>PiE, early 2027 <span>Division C</span></dd></div>
+        <div><dt>Programs</dt><dd>Three <span>Division C, Division B, Open Bench</span></dd></div>
+      </dl>
+    </section>
+  </div>
+
+  <div class="statement-band" data-section="About the club">
+    <div class="wrap">
+      <h2 class="sr">About the club</h2>
+      <p class="statement">We design, build, and program competition robots, and we share that knowledge with younger students through mentorship and outreach.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="band plain">
+      <h2>Programs</h2>
+      <div>
+        <p class="intro">Currently, we are organized into two divisions and an outreach program.</p>
+        <ul class="programs">
+          <li>
+            <h3><a href="#div-c">Division C</a></h3>
+            <p>The high school competition team. PiE in 2026–2027, VEX beginning in 2027–2028.</p>
+            <p class="status">Active</p>
+          </li>
+          <li>
+            <h3><a href="#div-b">Division B</a></h3>
+            <p>The middle school program, focused on hands-on instruction, with optional competition.</p>
+            <p class="status">Planned for 2027–2028</p>
+          </li>
+          <li>
+            <h3><a href="#open-bench">Open Bench</a></h3>
+            <p>Guidance in robotics and STEM for any student, regardless of membership.</p>
+            <p class="status">In development</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- EDIT: photo
+         To add a photo here: upload the picture to GitHub next to this file, change team.jpg
+         below to the picture's file name, fill in the description and caption, then delete
+         the two lines that say DELETE THIS LINE. -->
+    <!-- DELETE THIS LINE
+    <div class="band">
+      <h2>Photos</h2>
+      <figure class="photo">
+        <img src="team.jpg" alt="Describe what's in the photo">
+        <figcaption>Caption: who, where, when.</figcaption>
+      </figure>
+    </div>
+    DELETE THIS LINE -->
+
+    <div class="band">
+      <h2>Timeline</h2>
+      <span data-copy="timeline"></span>
+    </div>
+
+    <!-- Winter scene: a robot finishes a snowman below Albany Hill.
+         Shows only while winter mode is on (see "EDIT: winter"). Click it to replay. -->
+    <div class="band plain scene-band">
+      <span></span>
+      <div class="snow-scene" aria-hidden="true">
+      <svg class="scene-art" viewBox="80 20 880 300" focusable="false">
+      <!-- Albany Hill with its eucalyptus trees -->
+      <path class="sc-stone" d="M-20 300 C60 250 120 175 210 168 C290 162 360 230 470 300 Z"/>
+      <path class="sc-snow" d="M148 192 C178 170 240 160 278 180 C258 190 242 183 226 192 C206 183 186 198 148 192 Z"/>
+      <path class="sc-trunk" d="M168 188L170 140M196 180L195 124M226 178L228 132M252 184L250 146"/>
+      <ellipse cx="170" cy="134" rx="13" ry="17" class="sc-moss"/><ellipse cx="195" cy="118" rx="15" ry="20" class="sc-moss"/>
+      <ellipse cx="228" cy="126" rx="13" ry="18" class="sc-moss"/><ellipse cx="250" cy="141" rx="11" ry="14" class="sc-moss"/>
+      <ellipse cx="170" cy="121" rx="8" ry="4" class="sc-snow"/><ellipse cx="195" cy="102" rx="9" ry="4.5" class="sc-snow"/>
+      <ellipse cx="228" cy="112" rx="8" ry="4" class="sc-snow"/><ellipse cx="250" cy="130" rx="6.5" ry="3.5" class="sc-snow"/>
+      <!-- pines -->
+      <rect x="874" y="250" width="12" height="40" class="sc-bark"/>
+      <polygon points="880,166 906,214 894,214 918,256 842,256 866,214 854,214" class="sc-deep"/>
+      <polygon points="880,166 890,184 870,184" class="sc-snow"/>
+      <polygon points="866,214 880,204 894,214 884,218 876,218" class="sc-snow"/>
+      <rect x="931" y="268" width="10" height="24" class="sc-bark"/>
+      <polygon points="936,205 956,240 947,240 965,272 907,272 925,240 916,240" class="sc-deep"/>
+      <polygon points="936,205 944,219 928,219" class="sc-snow"/>
+      <!-- snowy ground -->
+      <path class="sc-snow" d="M0 292 C120 280 240 300 360 290 C480 280 600 298 720 288 C820 280 900 292 960 286 V340 H0 Z"/>
+      <ellipse cx="382" cy="306" rx="56" ry="7" class="sc-shadow"/>
+      <ellipse cx="620" cy="303" rx="92" ry="7" class="sc-shadow"/>
+
+      <!-- snowman -->
+      <g class="sm-base-move"><g class="sm-base-spin">
+      <circle cx="380" cy="262" r="44" class="sc-ball"/>
+      <circle cx="362" cy="248" r="3" class="sc-dot"/><circle cx="398" cy="276" r="2.6" class="sc-dot"/><circle cx="392" cy="242" r="2" class="sc-dot"/>
+      </g></g>
+      <g class="sm-mid-move"><g class="sm-mid-spin">
+      <circle cx="380" cy="196" r="32" class="sc-ball"/>
+      <circle cx="366" cy="206" r="2.4" class="sc-dot"/><circle cx="394" cy="184" r="2" class="sc-dot"/>
+      </g></g>
+      <g class="sm-head"><circle cx="380" cy="146" r="23" class="sc-ball"/></g>
+      <path class="sc-twig pop" style="--pd: 4.95s;" d="M352 190L318 170M330 177L322 164"/>
+      <path class="sc-twig pop" style="--pd: 5.05s;" d="M408 192L438 178M428 183L436 171"/>
+      <g class="pop" style="--pd: 4.8s;"><circle cx="380" cy="186" r="3.2" class="sc-ink"/><circle cx="380" cy="199" r="3.2" class="sc-ink"/><circle cx="380" cy="212" r="3.2" class="sc-ink"/></g>
+      <g class="pop" style="--pd: 4.35s;"><circle cx="372" cy="140" r="3" class="sc-ink"/><circle cx="388" cy="140" r="3" class="sc-ink"/></g>
+      <path class="sc-clay pop" style="--pd: 4.5s;" d="M384 147L405 150L384 154Z"/>
+      <g class="pop" style="--pd: 4.62s;"><circle cx="370" cy="154" r="1.7" class="sc-ink"/><circle cx="375" cy="157.5" r="1.7" class="sc-ink"/><circle cx="381" cy="158.5" r="1.7" class="sc-ink"/><circle cx="387" cy="156.5" r="1.7" class="sc-ink"/></g>
+      <g class="pop" style="--pd: 5.2s;"><path class="sc-red" d="M359 167Q380 176 401 167L401 175Q380 184 359 175Z"/><path class="sc-red" d="M391 173L397 196L390 197L385 175Z"/></g>
+
+      <!-- robot -->
+      <g class="rb-move">
+      <rect x="542" y="262" width="156" height="38" rx="19" class="sc-deep"/>
+      <rect x="547" y="267" width="146" height="28" rx="14" class="sc-tread"/>
+      <g class="rb-wheel"><circle cx="562" cy="281" r="13" class="sc-moss"/><circle cx="562" cy="281" r="4" class="sc-paper"/><circle cx="562" cy="272" r="2" class="sc-paper"/><circle cx="562" cy="290" r="2" class="sc-paper"/></g><g class="rb-wheel"><circle cx="602" cy="283" r="10" class="sc-moss"/><circle cx="602" cy="283" r="4" class="sc-paper"/><circle cx="602" cy="277" r="2" class="sc-paper"/><circle cx="602" cy="289" r="2" class="sc-paper"/></g><g class="rb-wheel"><circle cx="640" cy="283" r="10" class="sc-moss"/><circle cx="640" cy="283" r="4" class="sc-paper"/><circle cx="640" cy="277" r="2" class="sc-paper"/><circle cx="640" cy="289" r="2" class="sc-paper"/></g><g class="rb-wheel"><circle cx="678" cy="281" r="13" class="sc-moss"/><circle cx="678" cy="281" r="4" class="sc-paper"/><circle cx="678" cy="272" r="2" class="sc-paper"/><circle cx="678" cy="290" r="2" class="sc-paper"/></g>
+      <rect x="548" y="242" width="144" height="22" rx="5" class="sc-clay"/><circle cx="560" cy="253" r="2.3" class="sc-paper"/><circle cx="572" cy="253" r="2.3" class="sc-paper"/><circle cx="584" cy="253" r="2.3" class="sc-paper"/><circle cx="596" cy="253" r="2.3" class="sc-paper"/><circle cx="608" cy="253" r="2.3" class="sc-paper"/><circle cx="620" cy="253" r="2.3" class="sc-paper"/><circle cx="632" cy="253" r="2.3" class="sc-paper"/><circle cx="644" cy="253" r="2.3" class="sc-paper"/><circle cx="656" cy="253" r="2.3" class="sc-paper"/><circle cx="668" cy="253" r="2.3" class="sc-paper"/><circle cx="680" cy="253" r="2.3" class="sc-paper"/>
+      <rect x="560" y="214" width="56" height="28" rx="5" class="sc-deep"/>
+      <circle cx="602" cy="228" r="4.2" class="sc-gold rb-led"/>
+      <rect x="632" y="110" width="18" height="136" rx="3" class="sc-moss"/><circle cx="641" cy="166" r="2.3" class="sc-paper"/><circle cx="641" cy="180" r="2.3" class="sc-paper"/><circle cx="641" cy="194" r="2.3" class="sc-paper"/><circle cx="641" cy="208" r="2.3" class="sc-paper"/><circle cx="641" cy="222" r="2.3" class="sc-paper"/><circle cx="641" cy="236" r="2.3" class="sc-paper"/>
+      <rect x="624" y="122" width="34" height="11" rx="5" class="sc-red"/>
+      <path class="sc-red" d="M652 128L664 156L655 159L645 132Z"/>
+      <g class="rb-arm">
+      <g class="rb-carry"><circle cx="380" cy="146" r="23" class="sc-ball"/></g>
+      <rect x="404" y="144" width="237" height="12" rx="4" class="sc-clay"/><circle cx="422" cy="150" r="2.3" class="sc-paper"/><circle cx="435" cy="150" r="2.3" class="sc-paper"/><circle cx="448" cy="150" r="2.3" class="sc-paper"/><circle cx="461" cy="150" r="2.3" class="sc-paper"/><circle cx="474" cy="150" r="2.3" class="sc-paper"/><circle cx="487" cy="150" r="2.3" class="sc-paper"/><circle cx="500" cy="150" r="2.3" class="sc-paper"/><circle cx="513" cy="150" r="2.3" class="sc-paper"/><circle cx="526" cy="150" r="2.3" class="sc-paper"/><circle cx="539" cy="150" r="2.3" class="sc-paper"/><circle cx="552" cy="150" r="2.3" class="sc-paper"/><circle cx="565" cy="150" r="2.3" class="sc-paper"/><circle cx="578" cy="150" r="2.3" class="sc-paper"/><circle cx="591" cy="150" r="2.3" class="sc-paper"/><circle cx="604" cy="150" r="2.3" class="sc-paper"/><circle cx="617" cy="150" r="2.3" class="sc-paper"/>
+      <rect x="404" y="124" width="9" height="44" rx="3" class="sc-moss"/>
+      <rect x="388" y="124" width="24" height="7" rx="3" class="sc-moss"/>
+      <rect x="388" y="161" width="24" height="7" rx="3" class="sc-moss"/>
+      <circle cx="641" cy="150" r="9" class="sc-deep"/><circle cx="641" cy="150" r="3.2" class="sc-paper"/>
+      </g>
+      <rect x="604" y="70" width="86" height="50" rx="13" class="sc-screen"/>
+      <g class="rb-eyes"><ellipse cx="632" cy="92" rx="4.5" ry="5.5" class="sc-ink"/><ellipse cx="662" cy="92" rx="4.5" ry="5.5" class="sc-ink"/></g>
+      <path class="sc-smile" d="M634 103Q647 112 660 103"/>
+      <path class="sc-muff" d="M606 86Q647 34 688 86"/>
+      <circle cx="603" cy="95" r="10" class="sc-clay"/><circle cx="691" cy="95" r="10" class="sc-clay"/>
+      </g>
+
+      <!-- falling snow inside the scene -->
+      <circle class="sc-flake sc-snow" cx="351" cy="-10" r="4.1" style="animation-duration: 7.6s; animation-delay: -0.4s;"/>
+      <circle class="sc-flake sc-snow" cx="860" cy="-10" r="3.3" style="animation-duration: 7.5s; animation-delay: -0.5s;"/>
+      <circle class="sc-flake sc-snow" cx="539" cy="-10" r="2.6" style="animation-duration: 6.3s; animation-delay: -3.8s;"/>
+      <circle class="sc-flake sc-snow" cx="266" cy="-10" r="2.4" style="animation-duration: 7.7s; animation-delay: -7.4s;"/>
+      <circle class="sc-flake sc-snow" cx="146" cy="-10" r="4.1" style="animation-duration: 8.5s; animation-delay: -5.2s;"/>
+      <circle class="sc-flake sc-snow" cx="83" cy="-10" r="3.4" style="animation-duration: 7.6s; animation-delay: -8.8s;"/>
+      <circle class="sc-flake sc-snow" cx="67" cy="-10" r="3.3" style="animation-duration: 6.5s; animation-delay: -3.8s;"/>
+      <circle class="sc-flake sc-snow" cx="573" cy="-10" r="2.4" style="animation-duration: 7.2s; animation-delay: -7.3s;"/>
+      <circle class="sc-flake sc-snow" cx="205" cy="-10" r="2.4" style="animation-duration: 8.3s; animation-delay: -1.7s;"/>
+      <circle class="sc-flake sc-snow" cx="119" cy="-10" r="3.3" style="animation-duration: 6.3s; animation-delay: -0.5s;"/>
+      <circle class="sc-flake sc-snow" cx="230" cy="-10" r="3.2" style="animation-duration: 8.1s; animation-delay: -7.0s;"/>
+      <circle class="sc-flake sc-snow" cx="496" cy="-10" r="3.4" style="animation-duration: 7.8s; animation-delay: -2.7s;"/>
+      <circle class="sc-flake sc-snow" cx="833" cy="-10" r="2.6" style="animation-duration: 9.1s; animation-delay: -0.7s;"/>
+      <circle class="sc-flake sc-snow" cx="327" cy="-10" r="3.3" style="animation-duration: 9.5s; animation-delay: -6.6s;"/>
+      <circle class="sc-flake sc-snow" cx="314" cy="-10" r="3.4" style="animation-duration: 6.3s; animation-delay: -4.6s;"/>
+      <circle class="sc-flake sc-snow" cx="188" cy="-10" r="3.7" style="animation-duration: 6.6s; animation-delay: -4.4s;"/>
+      </svg>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Sponsor</h2>
+      <div class="sponsor">
+        <!-- EDIT: sponsors
+             To add another sponsor, copy the <img> line, upload their logo next to this file,
+             and change the file name and the alt text. -->
+        <img src="ptsa-logo.jpg" alt="Albany PTSA" width="374" height="312">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= DIVISION C -->
+<section class="page" id="p-div-c" data-name="Division C">
+  <div class="wrap">
+
+    <header class="page-head with-art">
+      <div>
+        <h1 tabindex="-1">Division C</h1>
+        <p class="lede">Division C is our high school competition team. Its members design, build, and program robots for regional competition.</p>
+        <p class="status">Status: Active</p>
+      </div>
+      <div class="robot-stage"><span data-copy="robot"></span></div>
+    </header>
+
+    <div class="band">
+      <h2>Timeline</h2>
+      <span data-copy="timeline"></span>
+    </div>
+
+    <div class="band">
+      <h2>Competitions</h2>
+      <div>
+        <!-- EDIT: photo
+             A robot or build photo can go here. Same steps as the photo spot on the Home page. -->
+        <!-- DELETE THIS LINE
+        <figure class="photo">
+          <img src="robot.jpg" alt="Describe what's in the photo">
+          <figcaption>Caption: who, where, when.</figcaption>
+        </figure>
+        DELETE THIS LINE -->
+        <p>During the 2026–2027 season, Division C will compete in the Pioneers in Engineering (PiE) Robotics Competition. PiE is organized by students at the University of California, Berkeley, and pairs each participating high school team with university mentors.</p>
+        <p>Beginning in 2027–2028, we intend to compete in the VEX V5 Robotics Competition at the regional level. Our fundraising and grant applications for this transition are under way.</p>
+        <p><a href="#competitions">Competition details</a></p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Mentorship</h2>
+      <div>
+        <p>Members of Division C also serve as instructors and technical mentors. They will lead workshops in computer-aided design (CAD), electronics, and programming, and will mentor students in Division B once that program begins.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= DIVISION B -->
+<section class="page" id="p-div-b" data-name="Division B">
+  <div class="wrap">
+
+    <header class="page-head">
+      <div>
+        <h1 tabindex="-1">Division B</h1>
+        <p class="lede">Division B will be our middle school program, beginning in the 2027–2028 school year.</p>
+        <p class="status">Status: Planned for 2027–2028</p>
+      </div>
+    </header>
+
+    <div class="band">
+      <h2>Program</h2>
+      <div>
+        <p>Division B will emphasize instruction and hands-on engineering practice. Students will build foundational skills in mechanical design, electronics, and programming under the guidance of high school mentors.</p>
+        <p>Competition will be optional. Students who wish to compete may enter entry-level VEX tournaments.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Preparation</h2>
+      <ul class="bullets">
+        <li>Host demonstrations and workshops at the middle school</li>
+        <li>Develop the curriculum and secure a faculty advisor</li>
+        <li>Arrange a regular meeting space and mentor schedule</li>
+        <li>Secure funding for equipment and competition fees</li>
+      </ul>
+    </div>
+
+    <div class="band">
+      <h2>Future expansion</h2>
+      <div>
+        <p>We are also considering STEM workshops for elementary school students, including introductory LEGO and VEX IQ modules.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Inquiries</h2>
+      <div>
+        <p>Families interested in Division B may contact us at <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= COMPETITIONS -->
+<section class="page" id="p-competitions" data-name="Competitions">
+  <div class="wrap">
+
+    <header class="page-head">
+      <div>
+        <h1 tabindex="-1">Competitions</h1>
+        <p class="lede">We compete in two robotics programs: Pioneers in Engineering this season, and the VEX V5 Robotics Competition beginning in 2027–2028.</p>
+      </div>
+    </header>
+
+    <div class="band">
+      <h2>Overview</h2>
+      <!-- EDIT: competitions -->
+      <table>
+        <thead>
+          <tr><th scope="col">Competition</th><th scope="col">Our season</th><th scope="col">Date</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Pioneers in Engineering (PiE)</th><td>2026–2027</td><td>Early 2027</td></tr>
+          <tr><th scope="row">VEX V5 Robotics Competition</th><td>Beginning 2027–2028</td><td>Fall 2027 onward</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="band">
+      <h2>Pioneers in Engineering</h2>
+      <div>
+        <p>Pioneers in Engineering (PiE) is a student organization at the University of California, Berkeley, founded in 2008. Each year it runs a robotics competition for high schools across the Bay Area.</p>
+        <dl class="facts">
+          <dt>Date</dt>
+          <dd>Early 2027. The exact date will be announced.</dd>
+          <dt>Format</dt>
+          <dd>Teams receive a robotics kit and are paired with UC Berkeley student mentors. Over the season, each team designs, builds, and programs a robot, then competes in a final tournament.</dd>
+          <dt>Scale</dt>
+          <dd>More than 700 high school students from over 30 Bay Area schools have competed in PiE.</dd>
+          <dt>Our team</dt>
+          <dd>Division C</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>VEX V5 Robotics Competition</h2>
+      <div>
+        <p>The VEX V5 Robotics Competition is run by the Robotics Education &amp; Competition Foundation. With more than 20,000 registered teams in over 50 countries, VEX is one of the largest robotics programs in the world. A new game is released each spring and played through the following school year.</p>
+        <dl class="facts">
+          <dt>Our first season</dt>
+          <dd>2027–2028</dd>
+          <dt>Format</dt>
+          <dd>Matches are played on a 12-by-12-foot field by two alliances of two teams each. Each match opens with a 15-second autonomous period, followed by 1 minute and 45 seconds of driver control.</dd>
+          <dt>Season</dt>
+          <dd>Local qualifying tournaments in the fall and winter, followed by regional championships and the VEX Robotics World Championship in the spring.</dd>
+          <dt>Current game</dt>
+          <dd>Override (2026–2027). The 2027–2028 game will be announced in spring 2027.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Estimated VEX costs</h2>
+      <div>
+        <table class="costs">
+          <tbody>
+            <tr><th scope="row">Team registration, per season</th><td>$175</td></tr>
+            <tr><th scope="row">Competition robot kit, one-time</th><td>About $1,285</td></tr>
+            <tr><th scope="row">Tournament entry fees</th><td>$50–$100 each</td></tr>
+            <tr><th scope="row">Practice game elements, optional</th><td>About $600</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top: 1rem;">Costs are for one team, based on 2026–2027 prices. Grants and sponsorships help us cover these expenses.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Results</h2>
+      <div>
+        <p>Results will be posted here after each competition.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= OPEN BENCH -->
+<section class="page" id="p-open-bench" data-name="Open Bench">
+  <div class="wrap">
+
+    <header class="page-head">
+      <div>
+        <h1 tabindex="-1">Open Bench</h1>
+        <p class="lede">Open Bench is our outreach program. We offer guidance in robotics and the wider fields of science, technology, engineering, and mathematics to any student, whether or not they are a member.</p>
+        <p class="status">Status: In development</p>
+      </div>
+    </header>
+
+    <div class="band">
+      <h2>Questions</h2>
+      <div>
+        <p>Students may send questions about projects, coursework, programming, computer-aided design, electronics, or competitive robotics to <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>. A member of our team will respond.</p>
+        <p>When a question falls outside the team's expertise, we will help identify an appropriate resource.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Workshops and demonstrations</h2>
+      <div>
+        <p>We plan to offer hands-on demonstrations and workshops, beginning at the middle school. Dates will be published on the <a href="#schedule">Meeting and Competition Dates</a> page.</p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Scope</h2>
+      <div>
+        <p>Robotics draws on mathematics, physics, programming, and design. Questions in any of these areas, and in science and engineering more broadly, are welcome.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= MEETING AND COMPETITION DATES -->
+<section class="page" id="p-schedule" data-name="Meeting and Competition Dates">
+  <div class="wrap">
+
+    <header class="page-head">
+      <div>
+        <h1 tabindex="-1">Meeting and Competition Dates</h1>
+        <!-- EDIT: discord -->
+        <p class="lede">We hold general meetings every Thursday. For the latest announcements and schedule changes, join our <a href="https://discord.gg/Bs73Jh7NzJ" target="_blank" rel="noopener">Discord server</a>.</p>
+      </div>
+    </header>
+
+    <div class="band">
+      <h2>Competitions</h2>
+      <!-- EDIT: competitions -->
+      <div>
+        <table>
+          <thead>
+            <tr><th scope="col">Date</th><th scope="col">Event</th><th scope="col">Team</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Early 2027</td><th scope="row">Pioneers in Engineering (PiE) Robotics Competition</th><td>Division C</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top: 1rem;">The exact date will be announced. <a href="#competitions">Competition details</a></p>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Upcoming meetings</h2>
+      <div>
+        <ul class="bullets" id="upcoming"></ul>
+        <noscript><p>General meetings are held every Thursday.</p></noscript>
+      </div>
+    </div>
+
+    <div class="band">
+      <h2>Past meetings</h2>
+      <div>
+        <p class="note">Select a meeting to view its minutes.</p>
+        <div class="meet-list" id="past"></div>
+      </div>
+    </div>
+
+    <!-- EDIT: meetings
+         data-first is the date of the first meeting (year-month-day).
+         data-no-meeting lists Thursdays with no meeting (holidays, breaks), separated by spaces.
+         Meetings are listed automatically for every other Thursday.
+
+         EDIT: minutes
+         To post minutes, add an <article> with the meeting date inside the box below.
+         Example:
+           <article data-date="2026-11-19">
+             <p>Attendance: ...</p>
+             <ul>
+               <li>Decided ...</li>
+             </ul>
+           </article>
+    -->
+    <div id="minutes-store" data-first="2026-11-12" data-no-meeting="2026-11-26" hidden>
+      <article data-date="2026-11-12"></article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= MEMBERS -->
+<section class="page" id="p-members" data-name="Members">
+  <div class="wrap">
+
+    <header class="page-head">
+      <div>
+        <h1 tabindex="-1">Members</h1>
+        <p class="lede">Our club was founded in 2026 by the officers listed below.</p>
+      </div>
+    </header>
+
+    <div class="band">
+      <h2>Leadership</h2>
+      <!-- EDIT: leadership -->
+      <table class="officers">
+        <thead>
+          <tr><th scope="col">Role</th><th scope="col">Officers</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Presidents</th><td><span>Yui I.</span>, <span>Leo C.</span></td></tr>
+          <tr><th scope="row">Co-president</th><td><span>Dylan S.</span></td></tr>
+          <tr><th scope="row">Treasurers</th><td><span>Jason Y.</span>, <span>Jaron L.</span></td></tr>
+          <tr><th scope="row">Secretaries</th><td><span>Arrwin G.</span>, <span>Sonny L.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="band">
+      <h2>Club members</h2>
+      <!-- EDIT: members
+           To add a member, copy one <li>...</li> line and change the name. -->
+      <ul class="member-list">
+        <li>Rico</li>
+        <li>Zachary</li>
+        <li>Brian</li>
+        <li>Finn</li>
+        <li>Lex</li>
+        <li>Bryan</li>
+        <li>Christopher</li>
+        <li>Logan</li>
+        <li>Calvin</li>
+      </ul>
+    </div>
+
+    <div class="band">
+      <h2>Membership</h2>
+      <div>
+        <!-- EDIT: discord -->
+        <p>Albany High School students who are interested in joining are invited to contact us at <a href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a>. Members and prospective members are also welcome to join our Discord server, where we post announcements.</p>
+        <p><a class="btn" href="https://discord.gg/Bs73Jh7NzJ" target="_blank" rel="noopener">Join our Discord</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================= BOTTOM OF EVERY PAGE -->
+<footer class="site-footer">
+  <div class="wrap">
+    <!-- EDIT: contact -->
+    <div>
+      <h2>Contact</h2>
+      <p><a class="mail" href="mailto:albanyroboticsleadership@gmail.com">albanyroboticsleadership@gmail.com</a></p>
+      <!-- EDIT: discord -->
+      <p><a class="btn" href="https://discord.gg/Bs73Jh7NzJ" target="_blank" rel="noopener">Join our Discord</a></p>
+      <p class="note">Announcements are posted on Discord first.</p>
+    </div>
+    <div>
+      <h2>Follow</h2>
+      <ul>
+        <li>Instagram: <a href="https://www.instagram.com/robotics.ahs/">@robotics.ahs</a></li>
+        <li>Discord: <a href="https://discord.gg/Bs73Jh7NzJ" target="_blank" rel="noopener">Albany Robotics server</a></li>
+      </ul>
+    </div>
+    <div id="about-footer">
+      <h2>Albany Robotics</h2>
+      <p>A student-led organization at Albany High School, Albany, California. Sponsored by the Albany PTSA.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- meeting minutes pop-up -->
+<dialog class="minutes" id="minutes-dialog" aria-labelledby="minutes-title">
+  <div class="minutes-head">
+    <div>
+      <small>Meeting minutes</small>
+      <h2 id="minutes-title"></h2>
+    </div>
+    <button class="close" type="button">Close</button>
+  </div>
+  <div class="minutes-body"></div>
+</dialog>
+
+<!-- decorations -->
+<div class="shutter" aria-hidden="true"><i class="upper"></i><i class="lower"></i></div>
+<div class="rail-bot" aria-hidden="true"><span data-copy="robot"></span></div>
+
+<!-- EDIT: timeline
+     This one list is shown on both the Home page and the Division C page. -->
+<template id="timeline">
+  <ol class="timeline">
+    <li>
+      <span class="node" aria-hidden="true"></span>
+      <h3>2026–2027</h3>
+      <ul class="bullets">
+        <li>Establish the high school team, Division C</li>
+        <li>Design and build a robot for the Pioneers in Engineering (PiE) Robotics Competition</li>
+        <li>Assess student interest at the high school and the middle school</li>
+        <li>Secure funding and apply for grants for VEX equipment and registration</li>
+        <li>Develop the curriculum and advising structure for Division B</li>
+      </ul>
+    </li>
+    <li>
+      <span class="node" aria-hidden="true"></span>
+      <h3>2027–2028</h3>
+      <ul class="bullets">
+        <li>Compete at regional VEX V5 Robotics Competition tournaments</li>
+        <li>Launch Division B at the middle school, with high school members serving as mentors</li>
+        <li>Establish long-term funding through school allocations, family contributions, and local sponsors</li>
+      </ul>
+    </li>
+    <li>
+      <span class="node" aria-hidden="true"></span>
+      <h3>2028–Future</h3>
+      <p>Plans for this period are in development.</p>
+    </li>
+  </ol>
+</template>
+
+<!-- the robot drawing, copied into each spot marked data-copy="robot" -->
+<template id="robot">
+  <svg class="bot" viewBox="0 0 120 100" aria-hidden="true" focusable="false">
+    <rect x="40" y="22" width="10" height="40" rx="2.5" class="k-moss"/>
+    <circle cx="45" cy="30" r="1.6" class="k-paper"/><circle cx="45" cy="38" r="1.6" class="k-paper"/>
+    <circle cx="45" cy="46" r="1.6" class="k-paper"/><circle cx="45" cy="54" r="1.6" class="k-paper"/>
+    <rect x="10" y="58" width="100" height="12" rx="3" class="k-clay"/>
+    <circle cx="18" cy="64" r="1.7" class="k-paper"/><circle cx="26" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="34" cy="64" r="1.7" class="k-paper"/><circle cx="42" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="50" cy="64" r="1.7" class="k-paper"/><circle cx="58" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="66" cy="64" r="1.7" class="k-paper"/><circle cx="74" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="82" cy="64" r="1.7" class="k-paper"/><circle cx="90" cy="64" r="1.7" class="k-paper"/>
+    <circle cx="98" cy="64" r="1.7" class="k-paper"/>
+    <g class="wheel">
+      <circle cx="28" cy="80" r="15.5" class="tread"/>
+      <circle cx="28" cy="80" r="15" class="k-moss"/>
+      <circle cx="28" cy="80" r="5.5" class="k-paper"/>
+      <circle cx="28" cy="70.5" r="2.2" class="k-paper"/><circle cx="28" cy="89.5" r="2.2" class="k-paper"/>
+      <circle cx="18.5" cy="80" r="2.2" class="k-paper"/><circle cx="37.5" cy="80" r="2.2" class="k-paper"/>
+    </g>
+    <g class="wheel">
+      <circle cx="92" cy="80" r="15.5" class="tread"/>
+      <circle cx="92" cy="80" r="15" class="k-moss"/>
+      <circle cx="92" cy="80" r="5.5" class="k-paper"/>
+      <circle cx="92" cy="70.5" r="2.2" class="k-paper"/><circle cx="92" cy="89.5" r="2.2" class="k-paper"/>
+      <circle cx="82.5" cy="80" r="2.2" class="k-paper"/><circle cx="101.5" cy="80" r="2.2" class="k-paper"/>
+    </g>
+    <rect x="48" y="35" width="46" height="8" rx="2.5" class="k-clay"/>
+    <circle cx="56" cy="39" r="1.5" class="k-paper"/><circle cx="63" cy="39" r="1.5" class="k-paper"/>
+    <circle cx="70" cy="39" r="1.5" class="k-paper"/><circle cx="77" cy="39" r="1.5" class="k-paper"/>
+    <circle cx="84" cy="39" r="1.5" class="k-paper"/>
+    <rect x="92" y="30" width="6" height="18" rx="2" class="k-moss"/>
+    <rect x="97" y="30" width="13" height="5" rx="2" class="k-moss claw-top"/>
+    <rect x="97" y="43" width="13" height="5" rx="2" class="k-moss claw-bottom"/>
+    <rect x="22" y="3" width="40" height="27" rx="6" class="screen"/>
+    <g class="face">
+      <g class="eyes"><circle cx="35" cy="14" r="2.4" class="k-ink"/><circle cx="49" cy="14" r="2.4" class="k-ink"/></g>
+      <path d="M36 20.5 Q42 25 48 20.5" class="smile"/>
+    </g>
+    <g class="hat">
+      <path d="M26 7 Q38 -2 57 3 L71 10 Q63 9.5 58 8 Z" class="k-red"/>
+      <rect x="21" y="5.5" width="42" height="6" rx="3" class="k-snow"/>
+      <circle cx="71" cy="10.5" r="3.4" class="k-snow"/>
+    </g>
+    <g class="gift">
+      <rect x="99" y="35.5" width="11" height="7.5" rx="1" class="k-red"/>
+      <rect x="103.6" y="35.5" width="1.8" height="7.5" class="k-gold"/>
+      <rect x="99" y="38.4" width="11" height="1.6" class="k-gold"/>
+    </g>
+  </svg>
+</template>
+
+<script>
+(() => {
+  "use strict";
+
+  const root = document.documentElement;
+  const motion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  root.classList.toggle("motion", motion);
+
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const typing = (e) => e.target.closest && e.target.closest("input, textarea, select, [contenteditable]");
+
+  // Put a copy of the timeline and the robot drawing wherever the page asks for one.
+  $$("[data-copy]").forEach((slot) => {
+    slot.replaceWith(document.getElementById(slot.dataset.copy).content.cloneNode(true));
+  });
+
+  /* ---------- pages ----------
+     Each page is a <section id="p-NAME">; its address is #NAME. */
+  const pageEls = $$(".page");
+  const pageIds = pageEls.map((p) => p.id.slice(2));
+  const pageEl = (id) => document.getElementById("p-" + id);
+  const pageName = (id) => pageEl(id).dataset.name;
+  const homeTitle = document.title;
+  const shutter = $(".shutter");
+  let current = null;
+  let pending = null;
+
+  function show(id) {
+    pageEls.forEach((p) => { p.hidden = p !== pageEl(id); });
+    $$(".nav-list a").forEach((a) => {
+      if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.title = id === "home" ? homeTitle : pageName(id) + " | Albany Robotics";
+    current = id;
+    pending = null;
+    if (id === "div-c") driveIn();
+    update();
+  }
+
+  // Switch pages. "then" runs once the new page is showing.
+  function go(id, then) {
+    setMenu(false);
+    if (id === pending) return;
+    if (id === current) {
+      if (then) then(); else window.scrollTo(0, 0);
+      return;
+    }
+    pending = id;
+    const swap = () => {
+      show(id);
+      window.scrollTo(0, 0);
+      const h1 = $("h1", pageEl(id));
+      if (h1) h1.focus({ preventScroll: true });
+      if (then) then();
+    };
+    if (!motion) { swap(); return; }
+    shutter.classList.add("shut");
+    setTimeout(() => {
+      swap();
+      requestAnimationFrame(() => requestAnimationFrame(() => shutter.classList.remove("shut")));
+    }, 300);
+  }
+
+  const pageFromAddress = () => {
+    const id = location.hash.slice(1);
+    return pageIds.includes(id) ? id : "home";
+  };
+
+  // Links to pages (#div-c, #members, ...) switch pages in place.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!pageIds.includes(id)) return;
+    e.preventDefault();
+    if (location.hash !== "#" + id) history.pushState(null, "", "#" + id);
+    go(id);
+  });
+  window.addEventListener("popstate", () => go(pageFromAddress()));
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  /* ---------- menu ---------- */
+  const drawer = $("#site-nav");
+  const menuBtn = $(".menu-btn");
+  const menuIsOpen = () => drawer.classList.contains("open");
+
+  function setMenu(open, returnFocus) {
+    if (open === menuIsOpen()) return;
+    drawer.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    if (open) ($('[aria-current="page"]', drawer) || $("a", drawer)).focus();
+    else if (returnFocus) menuBtn.focus();
+  }
+  menuBtn.addEventListener("click", () => setMenu(!menuIsOpen(), true));
+  $(".close", drawer).addEventListener("click", () => setMenu(false, true));
+  $(".backdrop", drawer).addEventListener("click", () => setMenu(false, true));
+  drawer.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const stops = $$(".close, a", drawer);
+    const first = stops[0];
+    const last = stops[stops.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ---------- search ----------
+     Titles come first: pages, then section headings, then smaller items (names, dates, list entries).
+     After those come sections whose text mentions the words. Each result shows where it lives,
+     for example "Members → Leadership". */
+  const searchBox = $("#q");
+  const resultList = $("#results");
+  let index = null;
+  let shown = [];
+  let active = -1;
+
+  const textOf = (el) => {
+    if (!el) return "";
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const bits = [];
+    while (walker.nextNode()) bits.push(walker.currentNode.nodeValue);
+    return bits.join(" ").replace(/\s+/g, " ").replace(/ ([.,;:!?])/g, "$1").trim();
+  };
+  const shorten = (t) => (t.length > 64 ? t.slice(0, 61).trimEnd() + "…" : t);
+  const escapeHtml = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function buildIndex() {
+    index = [];
+    const firstTimeline = $(".timeline"); // the timeline is shown on two pages; list it once
+    const add = (rank, page, title, path, body, el) => {
+      if (title) index.push({ rank, page, title, path, el, titleLow: title.toLowerCase(), bodyLow: (title + " " + body).toLowerCase() });
+    };
+    pageIds.forEach((page) => {
+      const sec = pageEl(page);
+      const name = pageName(page);
+      const menuNote = textOf($('.nav-list a[href="#' + page + '"] small'));
+      add(0, page, name, "Page", menuNote + " " + textOf($(".lede", sec)), sec);
+
+      $$(".band, .statement-band, .glance", sec).forEach((band) => {
+        const h2 = $("h2", band);
+        const timeline = $(".timeline", band);
+        if (!h2 || (timeline && timeline !== firstTimeline)) return;
+        const section = textOf(h2);
+        const where = name + " → " + section;
+        add(1, page, section, name, textOf(band), band);
+        $$("h3", band).forEach((h3) => add(2, page, textOf(h3), where, textOf(h3.parentElement), h3.parentElement));
+        $$("dt", band).forEach((dt) => add(3, page, textOf(dt), where, textOf(dt.nextElementSibling), dt.parentElement.matches("div") ? dt.parentElement : dt.nextElementSibling));
+        $$("tbody tr", band).forEach((tr) => add(3, page, textOf($("th", tr) || tr.cells[0]), where, textOf(tr), tr));
+        $$("td span, .member-list li", band).forEach((who) => add(3, page, textOf(who), where, "", who));
+        $$(".bullets li", band).forEach((li) => add(4, page, shorten(textOf(li)), where, textOf(li), li));
+      });
+    });
+  }
+
+  function search(query) {
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) return [];
+    const hits = [];
+    index.forEach((entry) => {
+      const inTitle = terms.every((t) => entry.titleLow.includes(t));
+      if (!inTitle && !terms.every((t) => entry.bodyLow.includes(t))) return;
+      let score = inTitle ? 100 - entry.rank * 10 : 20 - entry.rank;
+      if (inTitle && entry.titleLow.startsWith(terms[0])) score += 5;
+      else if (inTitle && terms.every((t) => (" " + entry.titleLow).includes(" " + t))) score += 3;
+      hits.push({ entry, inTitle, score });
+    });
+    return hits
+      // when only the text matches, list the most specific place: skip a section if something inside it also matches
+      .filter((h) => h.inTitle || !hits.some((other) => other.entry.el !== h.entry.el && h.entry.el.contains(other.entry.el)))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 7)
+      .map((h) => h.entry);
+  }
+
+  function setActive(i) {
+    active = i;
+    $$("li", resultList).forEach((li, n) => {
+      li.classList.toggle("active", n === i);
+      li.setAttribute("aria-selected", String(n === i));
+    });
+    if (i >= 0) searchBox.setAttribute("aria-activedescendant", "result-" + i);
+    else searchBox.removeAttribute("aria-activedescendant");
+  }
+
+  function renderResults() {
+    if (!index) buildIndex();
+    const query = searchBox.value.trim();
+    if (!query) { closeResults(); return; }
+    shown = search(query);
+    resultList.innerHTML = shown.length
+      ? shown.map((r, i) => '<li role="option" id="result-' + i + '" data-i="' + i + '"><b>' + escapeHtml(r.title) + "</b><span>" + escapeHtml(r.path) + "</span></li>").join("")
+      : '<li class="none" role="option" aria-disabled="true">No results for "' + escapeHtml(query) + '"</li>';
+    resultList.hidden = false;
+    searchBox.setAttribute("aria-expanded", "true");
+    setActive(shown.length ? 0 : -1);
+  }
+
+  function closeResults() {
+    resultList.hidden = true;
+    resultList.innerHTML = "";
+    shown = [];
+    searchBox.setAttribute("aria-expanded", "false");
+    setActive(-1);
+  }
+
+  function openResult(entry) {
+    closeResults();
+    searchBox.value = "";
+    searchBox.blur();
+    if (location.hash !== "#" + entry.page) history.pushState(null, "", "#" + entry.page);
+    go(entry.page, () => {
+      if (entry.rank === 0) { window.scrollTo(0, 0); return; }
+      const top = entry.el.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({ top: Math.max(0, top), behavior: motion ? "smooth" : "auto" });
+      entry.el.classList.add("found");
+      setTimeout(() => entry.el.classList.remove("found"), 1800);
+    });
+  }
+
+  searchBox.addEventListener("input", renderResults);
+  searchBox.addEventListener("focus", renderResults);
+  searchBox.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" && shown.length) { e.preventDefault(); setActive((active + 1) % shown.length); }
+    else if (e.key === "ArrowUp" && shown.length) { e.preventDefault(); setActive((active + shown.length - 1) % shown.length); }
+    else if (e.key === "Enter" && shown.length) { e.preventDefault(); openResult(shown[Math.max(active, 0)]); }
+    else if (e.key === "Escape") { searchBox.value = ""; closeResults(); }
+  });
+  resultList.addEventListener("mousemove", (e) => {
+    const li = e.target.closest("li[data-i]");
+    if (li && +li.dataset.i !== active) setActive(+li.dataset.i);
+  });
+  resultList.addEventListener("click", (e) => {
+    const li = e.target.closest("li[data-i]");
+    if (li) openResult(shown[+li.dataset.i]);
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search")) closeResults();
+  });
+
+  /* ---------- meetings: every Thursday from the first meeting ---------- */
+  const store = $("#minutes-store");
+  const dialog = $("#minutes-dialog");
+  const minutes = {};
+  $$("article", store).forEach((a) => { minutes[a.dataset.date] = a.innerHTML.trim(); });
+  const skipped = (store.dataset.noMeeting || "").split(/[\s,]+/);
+  const two = (n) => String(n).padStart(2, "0");
+  const dateKey = (d) => d.getFullYear() + "-" + two(d.getMonth() + 1) + "-" + two(d.getDate());
+  const longDate = (d) => d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
+  const [y, m, d] = store.dataset.first.split("-").map(Number);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const past = [];
+  const upcoming = [];
+  for (let day = new Date(y, m - 1, d), n = 0; upcoming.length < 4 && n < 600; day.setDate(day.getDate() + 7), n++) {
+    if (skipped.includes(dateKey(day))) continue;
+    (day <= today ? past : upcoming).push(new Date(day));
+  }
+
+  if (upcoming.length) {
+    $("#next-meeting").textContent = "Next: " + upcoming[0].toLocaleDateString("en-US", { month: "long", day: "numeric" });
+  }
+  upcoming.forEach((when) => {
+    const li = document.createElement("li");
+    li.textContent = longDate(when);
+    $("#upcoming").appendChild(li);
+  });
+
+  const pastList = $("#past");
+  past.reverse().forEach((when) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.innerHTML = "<span></span><span>View minutes</span>";
+    button.firstChild.textContent = longDate(when);
+    button.addEventListener("click", () => {
+      $("#minutes-title").textContent = longDate(when);
+      $(".minutes-body", dialog).innerHTML = minutes[dateKey(when)] || "<p>Minutes for this meeting have not been posted.</p>";
+      dialog.showModal();
+    });
+    pastList.appendChild(button);
+  });
+  if (!past.length) pastList.outerHTML = "<p>No meetings have taken place yet.</p>";
+
+  $(".close", dialog).addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => {
+    if (e.target !== dialog) return;
+    const box = dialog.getBoundingClientRect();
+    const inside = e.clientX >= box.left && e.clientX <= box.right && e.clientY >= box.top && e.clientY <= box.bottom;
+    if (!inside) dialog.close();
+  });
+
+  /* ---------- things that move as you scroll ---------- */
+  const statement = $(".statement");
+  const timelines = $$(".timeline");
+  const railBot = $(".rail-bot");
+  const railWheels = $$(".wheel", railBot);
+  const robotStage = $(".robot-stage");
+  let words = [];
+
+  if (motion) {
+    // split the big sentence on Home into words so they can darken one at a time
+    const list = statement.textContent.trim().split(/\s+/);
+    statement.textContent = "";
+    list.forEach((word, i) => {
+      const span = document.createElement("span");
+      span.textContent = word;
+      statement.append(span, i < list.length - 1 ? " " : "");
+      words.push(span);
+    });
+  }
+
+  function driveIn() {
+    robotStage.classList.remove("go");
+    void robotStage.offsetWidth;
+    robotStage.classList.add("go");
+  }
+
+  let queued = false;
+  function update() {
+    queued = false;
+    if (!motion) return;
+    const vh = window.innerHeight;
+
+    if (statement.offsetParent) {
+      const lit = clamp((vh * 0.9 - statement.getBoundingClientRect().top) / (vh * 0.55)) * words.length;
+      words.forEach((w, i) => { w.style.opacity = (0.22 + 0.78 * clamp(lit - i)).toFixed(3); });
+    }
+
+    timelines.forEach((tl) => {
+      if (!tl.offsetParent) return;
+      const box = tl.getBoundingClientRect();
+      const t = clamp((vh * 0.65 - box.top) / box.height);
+      tl.style.setProperty("--t", t.toFixed(4));
+      Array.from(tl.children).forEach((li) => li.classList.toggle("on", li.offsetTop + 12 <= t * tl.offsetHeight));
+    });
+
+    if (railBot.clientHeight) {
+      const max = root.scrollHeight - vh;
+      const down = max > 0 ? clamp(window.scrollY / max) : 0;
+      railBot.style.setProperty("--y", (down * (railBot.clientHeight - 58)).toFixed(1) + "px");
+      railWheels.forEach((w) => { w.style.transform = "rotate(" + (window.scrollY * 0.9).toFixed(1) + "deg)"; });
+    }
+  }
+  const queueUpdate = () => {
+    if (!queued) { queued = true; requestAnimationFrame(update); }
+  };
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+  window.addEventListener("resize", queueUpdate);
+
+  /* ---------- winter ----------
+     EDIT: winter  "auto" = on from November through February, "on" = always, "off" = never */
+  const WINTER = "auto";
+  const now = new Date();
+  const month = now.getMonth();
+  const greetings = ["Happy holidays!", "Beep boop. Ho ho ho.", "Merry Christmas!", "Stay warm out there.", "Winter build season: on.", "Snow day? More build time."];
+
+  const dressUp = () => $$("svg.bot").forEach((svg) => svg.classList.add("festive"));
+
+  function say(host, text) {
+    let bubble = $(".bubble", host);
+    if (!bubble) {
+      bubble = document.createElement("span");
+      bubble.className = "bubble";
+      bubble.setAttribute("aria-hidden", "true");
+      host.appendChild(bubble);
+    }
+    bubble.textContent = text || greetings[Math.floor(Math.random() * greetings.length)];
+    bubble.classList.add("show");
+    clearTimeout(bubble.timer);
+    bubble.timer = setTimeout(() => bubble.classList.remove("show"), 2600);
+  }
+  const robotInView = () => (robotStage.offsetParent ? robotStage : railBot);
+
+  function snowfall(layer, count, slow) {
+    const box = document.createElement("div");
+    box.className = "snowfall " + layer;
+    box.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < count; i++) {
+      const flake = document.createElement("i");
+      const size = slow ? 3 + Math.random() * 4.5 : 4 + Math.random() * 8;
+      const fall = slow ? 14 + Math.random() * 12 : 6 + Math.random() * 6;
+      flake.style.left = (Math.random() * 100).toFixed(2) + "vw";
+      flake.style.width = flake.style.height = size.toFixed(1) + "px";
+      flake.style.opacity = (0.55 + Math.random() * 0.45).toFixed(2);
+      flake.style.animationDuration = fall.toFixed(2) + "s, " + (2 + Math.random() * 3).toFixed(2) + "s";
+      flake.style.animationDelay = (-Math.random() * fall).toFixed(2) + "s, 0s";
+      box.appendChild(flake);
+    }
+    document.body.prepend(box);
+    return box;
+  }
+
+  // a burst of heavier snow, used by the hidden extras below
+  let snowing = false;
+  function snowBurst() {
+    if (!motion || snowing) return;
+    snowing = true;
+    const box = snowfall("front", 80, false);
+    setTimeout(() => box.classList.add("melt"), 14000);
+    setTimeout(() => { box.remove(); snowing = false; }, 15500);
+  }
+
+  if (WINTER === "on" || (WINTER === "auto" && (month >= 10 || month <= 1))) {
+    root.classList.add("winter");
+    dressUp();
+    if (month === 11 || month === 0) {
+      const greeting = document.createElement("p");
+      greeting.textContent = month === 11 ? "Happy holidays from Albany Robotics." : "Happy New Year from Albany Robotics.";
+      $("#about-footer").appendChild(greeting);
+    }
+    if (motion) {
+      snowfall("back", 30, true);
+      // the snowman scene starts when it scrolls into view; click it to replay
+      const scene = $(".snow-scene");
+      scene.classList.add("armed");
+      const watcher = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) { scene.classList.add("play"); watcher.disconnect(); }
+      }, { threshold: 0.45 });
+      watcher.observe(scene);
+      scene.addEventListener("click", () => {
+        scene.classList.remove("armed", "play");
+        void scene.offsetWidth;
+        scene.classList.add("armed");
+        requestAnimationFrame(() => requestAnimationFrame(() => scene.classList.add("play")));
+      });
+    }
+  }
+
+  /* ---------- hidden extras ----------
+     Click a robot, type "snow" or "hohoho", enter the Konami code,
+     or click the large logo on Home five times. */
+  $$("svg.bot").forEach((svg) => {
+    svg.addEventListener("click", () => { dressUp(); say(svg.parentNode); });
+  });
+
+  const konami = "arrowup arrowup arrowdown arrowdown arrowleft arrowright arrowleft arrowright b a";
+  let keys = [];
+  let typed = "";
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { setMenu(false, true); return; }
+    if (typing(e) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "/") { e.preventDefault(); searchBox.focus(); return; }
+    const key = e.key.toLowerCase();
+    keys = keys.concat(key).slice(-10);
+    if (keys.join(" ") === konami) { snowBurst(); dressUp(); say(robotInView(), "Merry Christmas!"); }
+    if (key.length !== 1) return;
+    typed = (typed + key).slice(-6);
+    if (typed.endsWith("snow")) { snowBurst(); typed = ""; }
+    if (typed.endsWith("hohoho")) { dressUp(); say(robotInView(), "Ho ho ho!"); typed = ""; }
+  });
+
+  const bigLogo = $("#big-logo");
+  let logoClicks = 0;
+  let logoTimer;
+  bigLogo.addEventListener("click", () => {
+    logoClicks++;
+    clearTimeout(logoTimer);
+    logoTimer = setTimeout(() => { logoClicks = 0; }, 1500);
+    if (logoClicks < 5) return;
+    logoClicks = 0;
+    bigLogo.classList.remove("jingle");
+    void bigLogo.offsetWidth;
+    bigLogo.classList.add("jingle");
+    snowBurst();
+  });
+
+  console.log("%cHappy holidays from Albany Robotics.%c\nTry typing \"snow\" anywhere on the page.",
+    "font: 700 16px sans-serif; color: #4f6228;", "font: 13px sans-serif; color: #5a5f54;");
+
+  /* ---------- start ---------- */
+  show(pageFromAddress());
+  window.scrollTo(0, 0);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+})();
+</script>
+</body>
+</html>
